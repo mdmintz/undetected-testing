@@ -1,0 +1,163 @@
+# Compiled Python Bytecode
+*.py[cod]
+
+# Packages
+*.egg
+*.egg-info
+dist
+build
+.eggs
+eggs
+parts
+bin
+var
+sdist
+develop-eggs
+.installed.cfg
+lib
+lib64
+__pycache__
+
+# Python3 pyvenv
+.env
+.venv
+env/
+venv/
+ENV/
+VENV/
+env.bak/
+venv.bak/
+.sbase
+.sbase*
+seleniumbase_env
+seleniumbase_venv
+sbase_env
+sbase_venv
+pyvenv.cfg
+.Python
+include
+pip-delete-this-directory.txt
+pip-selfcheck.json
+ipython.1.gz
+nosetests.1
+
+# Installer logs
+pip-log.txt
+.swp
+
+# Unit test / coverage reports
+.coverage
+.tox
+coverage.xml
+nosetests.xml
+
+# py.test
+.cache/*
+.pytest_cache/*
+.pytest_config
+
+# Azure Pipelines
+junit
+test-results.xml
+
+# Developer
+.idea
+.project
+.pydevproject
+.vscode
+
+# Web Drivers
+chromedriver
+geckodriver
+msedgedriver
+operadriver
+uc_driver
+MicrosoftWebDriver.exe
+headless_ie_selenium.exe
+IEDriverServer.exe
+chromedriver.exe
+geckodriver.exe
+msedgedriver.exe
+operadriver.exe
+uc_driver.exe
+
+# msedgedriver requirements
+libc++.dylib
+
+# Logs
+logs
+latest_logs
+log_archives
+archived_logs
+geckodriver.log
+ghostdriver.log
+pytestdebug.log
+
+# Reports
+reports/*.xml
+latest_report
+report_archives
+archived_reports
+html_report.html
+report.html
+report.xml
+
+# Dashboard
+dashboard.html
+dashboard.json
+dash_pie.json
+dashboard.lock
+
+# Allure Reports / Results
+allure_report
+allure-report
+allure_results
+allure-results
+
+# Charts
+saved_charts
+
+# Presentations
+saved_presentations
+
+# Tours
+tours_exported
+
+# Images
+images_exported
+
+# Cookies
+saved_cookies
+
+# Recordings
+recordings
+
+# Automated Visual Testing
+visual_baseline
+
+# MkDocs WebSite Generator
+site/*
+mkdocs_build/*.md
+mkdocs_build/*/*.md
+mkdocs_build/*/*/*.md
+mkdocs_build/*/*/*/*.md
+
+# macOS system files
+.DS_Store
+
+# Other
+selenium-server-standalone.jar
+proxy.zip
+proxy.lock
+verbose_hub_server.dat
+verbose_node_server.dat
+ip_of_grid_hub.dat
+downloaded_files
+archived_files
+assets
+temp
+temp_*/
+node_modules
+
+# Other Generated Files
+now_secure_image.png
