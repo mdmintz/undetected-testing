@@ -1,6 +1,6 @@
 # undetected-testing
 
-Find out if [SeleniumBase](https://github.com/seleniumbase/SeleniumBase) can avoid detection by sites that use anti-bot services.
+Learn how [SeleniumBase](https://github.com/seleniumbase/SeleniumBase) can evade detection by sites with anti-bot services.
 
 First:
 
