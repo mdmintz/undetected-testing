@@ -13,7 +13,7 @@ class UndetectedTest(BaseCase):
             self.get_new_driver(undetectable=True, incognito=True)
         self.open("https://nowsecure.nl/#relax")
         try:
-            self.assert_text("OH YEAH, you passed!", "h1", timeout=6.75)
+            self.assert_text("OH YEAH, you passed!", "h1", timeout=7.75)
             self.post_message("Selenium wasn't detected!", duration=2.8)
             self._print("\n Success! Website did not detect Selenium! ")
             self.save_screenshot_to_logs()
