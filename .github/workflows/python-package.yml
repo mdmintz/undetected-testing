@@ -54,6 +54,9 @@ jobs:
       run: |
         echo "def test_1(): pass" > nothing.py
         pytest nothing.py
+    - name: Display Chrome binary that's used
+      run: |
+        python -c "from seleniumbase import undetected; print(undetected.find_chrome_executable())"
     - name: Run pytest test_verify_undetected.py
       run: |
         pytest test_verify_undetected.py -v -s --uc --incognito --headless2 --reruns=1
