@@ -62,4 +62,4 @@ jobs:
         pytest test_verify_undetected.py -v -s --uc --incognito --headless2 --reruns=1
     - name: Run python verify_undetected.py
       run: |
-        python verify_undetected.py --headless2
+        python verify_undetected.py --headless2 --incognito
