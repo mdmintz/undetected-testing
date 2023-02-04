@@ -20,13 +20,15 @@ with DriverContext(uc=True, incognito=True) as driver:
     try:
         verify_success(driver)
     except Exception:
-        if page_actions.is_element_visible('input[value*="Verify"]'):
+        if page_actions.is_element_visible(
+            driver, 'input[value*="Verify"]'
+        ):
             element = driver.find_element(
                 "css selector", 'input[value*="Verify"]'
             )
             element.click()
         elif page_actions.is_element_visible(
-            "css selector", 'iframe[title*="challenge"]'
+            driver, 'iframe[title*="challenge"]'
         ):
             element = driver.find_element(
                 "css selector", 'iframe[title*="challenge"]'
