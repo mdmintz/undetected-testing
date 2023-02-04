@@ -62,4 +62,4 @@ jobs:
         pytest test_verify_undetected.py -v -s --uc --uc-cdp
     - name: Run python verify_undetected.py
       run: |
-        python verify_undetected.py --uc --uc-cdp --headless2
+        python verify_undetected.py --uc --uc-cdp --headed
