@@ -1,6 +1,7 @@
 import time
 from seleniumbase import page_actions
 from seleniumbase import DriverContext
+from sbvirtualdisplay import Display
 
 
 def verify_success(driver):
@@ -15,7 +16,9 @@ def fail_me():
     raise Exception('Selenium was detected! Try using: "pytest --uc"')
 
 
-with DriverContext(uc=True, incognito=True) as driver:
+display = Display(visible=0, size=(1440, 1880))
+display.start()
+with DriverContext(uc=True, incognito=True, headless=False) as driver:
     driver.get("https://nowsecure.nl/#relax")
     try:
         verify_success(driver)
@@ -45,3 +48,4 @@ with DriverContext(uc=True, incognito=True) as driver:
     screenshot_name = "now_secure_image.png"
     driver.save_screenshot(screenshot_name)
     print("\nScreenshot saved to: %s\n" % screenshot_name)
+display.stop()
