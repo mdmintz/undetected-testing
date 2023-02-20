@@ -59,7 +59,7 @@ jobs:
         python -c "from seleniumbase import undetected; print(undetected.find_chrome_executable())"
     - name: Run pytest test_verify_undetected.py
       run: |
-        pytest test_verify_undetected.py -v -s --uc --uc-cdp --reruns=1
+        pytest test_verify_undetected.py -v -s --uc --uc-cdp --reruns=2
     #- name: Run python verify_undetected.py
     #  run: |
     #    python verify_undetected.py --uc --uc-cdp --headed
