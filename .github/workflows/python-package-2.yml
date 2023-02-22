@@ -57,4 +57,4 @@ jobs:
         python -c "from seleniumbase import undetected; print(undetected.find_chrome_executable())"
     - name: Run pytest test_verify_undetected.py
       run: |
-        pytest test_verify_undetected.py -v -s --uc --uc-cdp --user-data-dir=my_data_dir --reruns=2
+        pytest test_verify_undetected.py -v -s --uc --uc-cdp --user-data-dir=my_data_dir --reruns=2 --chromium-arg="--disable-application-cache,--disable-setuid-sandbox"
