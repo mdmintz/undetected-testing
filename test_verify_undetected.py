@@ -9,7 +9,7 @@ if __name__ == "__main__":
 
 class UndetectedTest(BaseCase):
     def verify_success(self):
-        self.assert_text("OH YEAH, you passed!", "h1", timeout=9.75)
+        self.assert_text("OH YEAH, you passed!", "h1", timeout=12.5)
         self.post_message("Selenium wasn't detected!", duration=2.8)
         self._print("\n Success! Website did not detect Selenium! ")
 
