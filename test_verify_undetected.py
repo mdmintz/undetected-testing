@@ -18,7 +18,6 @@ class UndetectedTest(BaseCase):
 
     def test_browser_is_undetected(self):
         self.open("https://nowsecure.nl/#relax")
-        self.hide_elements("iframe")
         try:
             self.verify_success()
         except Exception:
