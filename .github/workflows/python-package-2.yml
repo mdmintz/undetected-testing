@@ -16,7 +16,7 @@ jobs:
       fail-fast: false
       max-parallel: 5
       matrix:
-        os: [ubuntu-20.04]
+        os: [ubuntu-22.04]
         python-version: ["3.7", "3.8", "3.9", "3.10", "3.11"]
 
     runs-on: ${{ matrix.os }}
@@ -38,7 +38,7 @@ jobs:
         # Stop the build if there are flake8 issues
         flake8 . --count --show-source --statistics --exclude=temp
     - name: Install Chrome
-      if: matrix.os == 'ubuntu-20.04'
+      if: matrix.os == 'ubuntu-22.04'
       run: |
         sudo apt install google-chrome-stable
     - name: Check the console scripts interface
@@ -57,4 +57,4 @@ jobs:
         python -c "from seleniumbase import undetected; print(undetected.find_chrome_executable())"
     - name: Run pytest test_verify_undetected.py
       run: |
-        pytest test_verify_undetected.py -v -s --uc --user-data-dir=my_data_dir --headless2
+        pytest test_verify_undetected.py -v -s --uc --user-data-dir=my_data_dir
