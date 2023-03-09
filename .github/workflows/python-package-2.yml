@@ -1,7 +1,5 @@
 name: CI build with User Data Dir
 on:
-  schedule:
-    - cron: "40 * * * *"
   push:
     branches: [ master ]
   workflow_dispatch:
