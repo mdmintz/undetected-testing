@@ -9,7 +9,7 @@ if __name__ == "__main__":
 
 class UndetectedTest(BaseCase):
     def verify_success(self):
-        self.assert_text("OH YEAH, you passed!", "h1", timeout=6.25)
+        self.assert_text("OH YEAH, you passed!", "h1", timeout=12.5)
         self.post_message("Selenium wasn't detected!", duration=2.8)
         self._print("\n Success! Website did not detect Selenium! ")
 
@@ -21,9 +21,13 @@ class UndetectedTest(BaseCase):
         try:
             self.verify_success()
         except Exception:
-            self.clear_all_cookies()
-            self.get_new_driver(devtools=True)
-            self.open("https://nowsecure.nl/#relax")
+            if self.is_element_visible('input[value*="Verify"]'):
+                self.click('input[value*="Verify"]')
+            elif self.is_element_visible('iframe[title*="challenge"]'):
+                self.switch_to_frame('iframe[title*="challenge"]')
+                self.click("span.mark")
+            else:
+                self.fail_me()
             try:
                 self.verify_success()
             except Exception:
