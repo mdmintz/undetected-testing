@@ -11,7 +11,7 @@ First:
 Now you can try running a test ([test_verify_undetected.py](https://github.com/mdmintz/undetected-testing/blob/master/test_verify_undetected.py)) to see if SeleniumBase can fool https://nowsecure.nl/#relax, which won't let you through (normally) if an automation framework is detected:
 
 ```bash
-> pytest test_verify_undetected.py --uc --incognito -s -q
+> pytest test_verify_undetected.py --uc -s -q
 
  Success! Website did not detect Selenium!
 .
