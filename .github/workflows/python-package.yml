@@ -59,12 +59,13 @@ jobs:
         python -c "import os; print(os.path.exists('/usr/bin/google-chrome'))"
         python -c "import os; print(os.path.exists('/bin/google-chrome-stable'))"
         python -c "import os; print(os.path.exists('/bin/chromium-browser'))"
+        python -c "import os; print(os.path.exists('/bin/chromium'))"
     - name: Display Chrome binary that's used
       run: |
         python -c "from seleniumbase import undetected; print(undetected.find_chrome_executable())"
     - name: Run pytest test_verify_undetected.py
       run: |
-        pytest test_verify_undetected.py -v -s --uc --reruns=2 --binary-location="/usr/bin/chromium"
+        pytest test_verify_undetected.py -v -s --uc --reruns=2 --binary-location="/bin/chromium"
     #- name: Run python verify_undetected.py
     #  run: |
     #    python verify_undetected.py --uc --uc-cdp --headed
