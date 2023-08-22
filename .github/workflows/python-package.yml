@@ -62,6 +62,7 @@ jobs:
         python -c "import os; print(os.path.exists('/bin/chromium'))"
     - name: Display Chrome binary that's used
       run: |
+        python -c "from seleniumbase.core import detect_b_ver; print(detect_b_ver.get_binary_location('google-chrome'))"
         python -c "from seleniumbase import undetected; print(undetected.find_chrome_executable())"
     - name: Run pytest test_verify_undetected.py
       run: |
