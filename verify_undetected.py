@@ -17,7 +17,7 @@ def fail_me():
 
 display = Display(visible=0, size=(1440, 1880))
 display.start()
-with DriverContext(uc=True, incognito=True, headless=False) as driver:
+with DriverContext(uc=True, headless=False) as driver:
     driver.get("https://nowsecure.nl/#relax")
     try:
         verify_success(driver)
