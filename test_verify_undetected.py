@@ -14,7 +14,7 @@ class UndetectedTest(BaseCase):
         self._print("\n Success! Website did not detect Selenium! ")
 
     def fail_me(self):
-        self.print(self.get_page_source())
+        self._print(self.get_page_source())
         self.fail('Selenium was detected! Try using: "pytest --uc"')
 
     def test_browser_is_undetected(self):
