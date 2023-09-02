@@ -49,10 +49,10 @@ jobs:
     - name: Make sure pytest is working
       run: |
         echo "def test_1(): pass" > nothing.py
-        pytest nothing.py
+        pytest nothing.py --uc
     - name: Display Chrome binary that's used
       run: |
         python -c "from seleniumbase import undetected; print(undetected.find_chrome_executable())"
     - name: Run pytest test_verify_undetected.py
       run: |
-        pytest test_verify_undetected.py -v -s --uc --user-data-dir=my_data_dir --driver-version=102
+        pytest test_verify_undetected.py -v -s --uc --user-data-dir=my_data_dir --disable-csp
