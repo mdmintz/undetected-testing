@@ -55,4 +55,4 @@ jobs:
         python -c "from seleniumbase import undetected; print(undetected.find_chrome_executable())"
     - name: Run pytest test_verify_undetected.py
       run: |
-        pytest test_verify_undetected.py -v -s --uc --user-data-dir=my_data_dir --disable-csp
+        pytest test_verify_undetected.py -v -s --uc --user-data-dir=my_data_dir --proxy=83.240.214.11:8080
