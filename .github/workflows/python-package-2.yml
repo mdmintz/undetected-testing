@@ -55,4 +55,4 @@ jobs:
         python -c "from seleniumbase import undetected; print(undetected.find_chrome_executable())"
     - name: Run pytest test_verify_undetected.py
       run: |
-        pytest test_verify_undetected.py -v -s --uc --incognito --headless2 --user-data-dir=my_data_dir
+        pytest test_verify_undetected.py -v -s --uc --user-data-dir=my_data_dir --driver-version=102
