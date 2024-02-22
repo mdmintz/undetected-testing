@@ -1,50 +1,29 @@
-import time
-from seleniumbase import page_actions
-from seleniumbase import DriverContext
-from sbvirtualdisplay import Display
+"""Determine if your browser is detectable by anti-bot services.
+Some sites use scripts to detect Selenium, and then block you.
+To evade detection, add --uc as a pytest command-line option."""
+from seleniumbase import BaseCase
+BaseCase.main(__name__, __file__, "--uc", "-s")
 
 
-def verify_success(driver):
-    page_actions.wait_for_text(
-        driver, "OH YEAH, you passed!", "h1", by="css selector"
-    )
-    print("\n Success! Website did not detect Selenium!")
-
-
-def fail_me():
-    raise Exception('Selenium was detected! Try using: "pytest --uc"')
-
-
-display = Display(visible=0, size=(1440, 1880))
-display.start()
-with DriverContext(uc=True, headless=False) as driver:
-    driver.get("https://nowsecure.nl/#relax")
-    try:
-        verify_success(driver)
-    except Exception:
-        if page_actions.is_element_visible(
-            driver, 'input[value*="Verify"]'
-        ):
-            element = driver.find_element(
-                "css selector", 'input[value*="Verify"]'
+class UndetectedTest(BaseCase):
+    def test_browser_is_undetected(self):
+        if not self.undetectable:
+            self.get_new_driver(undetectable=True)
+        self.driver.uc_open_with_reconnect(
+            "https://nowsecure.nl/#relax", reconnect_time=3
+        )
+        self.sleep(1.2)
+        if not self.is_text_visible("OH YEAH, you passed!", "h1"):
+            self.get_new_driver(undetectable=True)
+            self.driver.uc_open_with_reconnect(
+                "https://nowsecure.nl/#relax", reconnect_time=3
             )
-            element.click()
-        elif page_actions.is_element_visible(
-            driver, 'iframe[title*="challenge"]'
-        ):
-            element = driver.find_element(
-                "css selector", 'iframe[title*="challenge"]'
-            )
-            driver.switch_to.frame(element)
-            driver.find_element("css selector", "span.mark").click()
-        else:
-            fail_me()
-        try:
-            verify_success(driver)
-        except Exception:
-            fail_me()
-    time.sleep(2)
-    screenshot_name = "now_secure_image.png"
-    driver.save_screenshot(screenshot_name)
-    print("\nScreenshot saved to: %s\n" % screenshot_name)
-display.stop()
+            self.sleep(1.2)
+        if not self.is_text_visible("OH YEAH, you passed!", "h1"):
+            if self.is_element_visible('iframe[src*="challenge"]'):
+                with self.frame_switch('iframe[src*="challenge"]'):
+                    self.click("span.mark")
+                    self.sleep(2)
+        self.assert_text("OH YEAH, you passed!", "h1", timeout=3)
+        self.post_message("Selenium wasn't detected!", duration=2.8)
+        self._print("\n Success! Website did not detect Selenium! ")
