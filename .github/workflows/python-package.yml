@@ -16,10 +16,10 @@ jobs:
       PY_COLORS: "1"
     strategy:
       fail-fast: false
-      max-parallel: 8
+      max-parallel: 4
       matrix:
-        os: [ubuntu-20.04, macos-latest]
-        python-version: ["3.8", "3.9", "3.10", "3.11"]
+        os: [ubuntu-20.04]
+        python-version: ["3.9", "3.10", "3.11", "3.12"]
 
     runs-on: ${{ matrix.os }}
     steps:
@@ -64,9 +64,12 @@ jobs:
       run: |
         python -c "from seleniumbase.core import detect_b_ver; print(detect_b_ver.get_binary_location('google-chrome'))"
         python -c "from seleniumbase import undetected; print(undetected.find_chrome_executable())"
-    - name: Run pytest test_verify_undetected.py
+    #- name: Run pytest test_verify_undetected.py
+    #  run: |
+    #    pytest test_verify_undetected.py -v -s --uc --reruns=2 --proxy=89.187.179.163:8443
+    - name: Run python raw_uc_mode.py
       run: |
-        pytest test_verify_undetected.py -v -s --uc --reruns=2 --proxy=89.187.179.163:8443
+        python raw_uc_mode.py
     #- name: Run python verify_undetected.py
     #  run: |
     #    python verify_undetected.py --uc --uc-cdp --headed

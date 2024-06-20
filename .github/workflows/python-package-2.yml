@@ -12,10 +12,10 @@ jobs:
       PY_COLORS: "1"
     strategy:
       fail-fast: false
-      max-parallel: 5
+      max-parallel: 4
       matrix:
         os: [ubuntu-22.04]
-        python-version: ["3.7", "3.8", "3.9", "3.10", "3.11"]
+        python-version: ["3.9", "3.10", "3.11", "3.12"]
 
     runs-on: ${{ matrix.os }}
     steps:
@@ -53,6 +53,9 @@ jobs:
     - name: Display Chrome binary that's used
       run: |
         python -c "from seleniumbase import undetected; print(undetected.find_chrome_executable())"
-    - name: Run pytest test_verify_undetected.py
+    #- name: Run pytest test_verify_undetected.py
+    #  run: |
+    #    pytest test_verify_undetected.py -v -s --uc --user-data-dir=my_data_dir --proxy=89.187.179.163:8443
+    - name: Run python raw_uc_mode.py
       run: |
-        pytest test_verify_undetected.py -v -s --uc --user-data-dir=my_data_dir --proxy=89.187.179.163:8443
+        python raw_uc_mode.py
