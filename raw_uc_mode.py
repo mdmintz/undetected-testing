@@ -1,3 +1,4 @@
+import os
 from seleniumbase import SB
 
 with SB(uc=True, test=True) as sb:
