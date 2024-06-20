@@ -1,7 +1,11 @@
 import os
 from seleniumbase import SB
 
-agent = "Mozilla/5.0 (Intel Mac OS X) Chrome/125.0.0.0"
+agent = (
+    "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) "
+    "AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 "
+    "Safari/537.36"
+)
 
 with SB(uc=True, test=True, agent=agent) as sb:
     import pyautogui
