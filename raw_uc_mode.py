@@ -1,5 +1,8 @@
+import os
 import pyautogui
 from seleniumbase import SB
+
+os.environ["DISPLAY"] = ":0"
 
 with SB(uc=True, test=True, xvfb=True) as sb:
     url = "https://seleniumbase.io/hobbit/login"
