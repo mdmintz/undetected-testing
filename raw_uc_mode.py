@@ -58,3 +58,23 @@ with SB(uc=True, test=True) as sb:
     sb.sleep(3)
     sb.connect()
     print(sb.get_text("html"))
+
+with SB(uc=True, test=True) as sb:
+    import pyautogui
+    import Xlib.display
+    from sbvirtualdisplay.display import Display
+    disp = Display(
+        visible=True, size=(1366, 768), backend="xvfb", use_xauth=True
+    )
+    disp.start()
+    pyautogui._pyautogui_x11._display = (
+        Xlib.display.Display(os.environ['DISPLAY'])
+    )
+    url = "https://user-agent-client-hints.glitch.me/"
+    sb.uc_open_with_reconnect(url, 3)
+    print(sb.get_text("html"))
+
+with SB(test=True) as sb:
+    url = "https://user-agent-client-hints.glitch.me/"
+    sb.open(url)
+    print(sb.get_text("html"))
