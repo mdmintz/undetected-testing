@@ -1,7 +1,9 @@
 import os
 from seleniumbase import SB
 
-with SB(uc=True, test=True, headed=True, xvfb=True) as sb:
+agent = "Mozilla/5.0 (Intel Mac OS X) Chrome/125.0.0.0"
+
+with SB(uc=True, test=True, agent=agent) as sb:
     import pyautogui
     import Xlib.display
     from sbvirtualdisplay.display import Display
@@ -24,7 +26,7 @@ with SB(uc=True, test=True, headed=True, xvfb=True) as sb:
     print(sb.get_text("h1"))
 
 
-with SB(uc=True, test=True, headed=True, xvfb=True) as sb:
+with SB(uc=True, test=True, agent=agent) as sb:
     import pyautogui
     import Xlib.display
     from sbvirtualdisplay.display import Display
@@ -39,7 +41,7 @@ with SB(uc=True, test=True, headed=True, xvfb=True) as sb:
     sb.uc_open_with_reconnect(url, 3)
     print(sb.get_text("html"))
 
-with SB(uc=True, test=True, headed=True, xvfb=True) as sb:
+with SB(uc=True, test=True, agent=agent) as sb:
     import pyautogui
     import Xlib.display
     from sbvirtualdisplay.display import Display
@@ -59,7 +61,7 @@ with SB(uc=True, test=True, headed=True, xvfb=True) as sb:
     sb.connect()
     print(sb.get_text("html"))
 
-with SB(uc=True, test=True, headed=True, xvfb=True) as sb:
+with SB(uc=True, test=True, agent=agent) as sb:
     import pyautogui
     import Xlib.display
     from sbvirtualdisplay.display import Display
@@ -74,7 +76,7 @@ with SB(uc=True, test=True, headed=True, xvfb=True) as sb:
     sb.uc_open_with_reconnect(url, 3)
     print(sb.get_text("html"))
 
-with SB(test=True, headed=True, xvfb=True) as sb:
+with SB(test=True) as sb:
     url = "https://user-agent-client-hints.glitch.me/"
     sb.open(url)
     print(sb.get_text("html"))
