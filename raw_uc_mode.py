@@ -1,10 +1,9 @@
 import os
-import pyautogui
 from seleniumbase import SB
 
-os.environ["DISPLAY"] = ":0"
-
 with SB(uc=True, test=True, xvfb=True) as sb:
+    os.environ["DISPLAY"] = ":0"
+    import pyautogui
     url = "https://seleniumbase.io/hobbit/login"
     sb.driver.uc_open_with_disconnect(url)
     sb.sleep(3)
