@@ -15,10 +15,11 @@ pyautogui._pyautogui_x11._display = (
 with SB(uc=True, test=True, rtf=True, headed=True) as sb:
     url = "https://seleniumbase.io/hobbit/login"
     sb.driver.uc_open_with_disconnect(url)
-    sb.sleep(2.5)
+    sb.sleep(4)
     pyautogui.press("\t")
+    sb.sleep(0.1)
     pyautogui.press(" ")
-    sb.sleep(2.5)
+    sb.sleep(2)
     sb.connect()
     sb.assert_text("Welcome to Middle Earth!", "h1")
     print(sb.get_text("h1"))
@@ -26,9 +27,10 @@ with SB(uc=True, test=True, rtf=True, headed=True) as sb:
 with SB(uc=True, test=True, rtf=True, headed=True) as sb:
     url = "https://seleniumbase.io/apps/brotector"
     sb.driver.uc_open_with_disconnect(url)
-    sb.sleep(2.5)
+    sb.sleep(4)
     pyautogui.press("\t")
+    sb.sleep(0.1)
     pyautogui.press(" ")
-    sb.sleep(2.5)
+    sb.sleep(2)
     sb.connect()
     sb.assert_text("SUCCESS", "#pText")
