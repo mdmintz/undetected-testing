@@ -1,10 +1,15 @@
 import os
 from seleniumbase import SB
 
-with SB(uc=True, test=True, xvfb=True) as sb:
+with SB(uc=True, test=True) as sb:
     os.environ["DISPLAY"] = ":0"
     import pyautogui
     import Xlib.display
+    from sbvirtualdisplay.display import Display
+    disp = Display(
+        visible=True, size=(1366, 768), backend="xvfb", use_xauth=True
+    )
+    disp.start()
     pyautogui._pyautogui_x11._display = (
         Xlib.display.Display(os.environ['DISPLAY'])
     )
