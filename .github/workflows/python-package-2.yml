@@ -1,7 +1,11 @@
 name: CI build with User Data Dir
 on:
+  schedule:
+    - cron: "18 * * * *"
   push:
     branches: [ master ]
+  pull_request:
+    branches:
   workflow_dispatch:
     branches:
 
@@ -15,7 +19,7 @@ jobs:
       max-parallel: 4
       matrix:
         os: [ubuntu-22.04]
-        python-version: ["3.9", "3.10", "3.11", "3.12"]
+        python-version: ["3.10", "3.11", "3.12"]
 
     runs-on: ${{ matrix.os }}
     steps:

@@ -1,7 +1,7 @@
 name: CI build
 on:
   schedule:
-    - cron: "20 * * * *"
+    - cron: "14 * * * *"
   push:
     branches: [ master ]
   pull_request:
@@ -16,10 +16,10 @@ jobs:
       PY_COLORS: "1"
     strategy:
       fail-fast: false
-      max-parallel: 4
+      max-parallel: 3
       matrix:
         os: [ubuntu-20.04]
-        python-version: ["3.9", "3.10", "3.11", "3.12"]
+        python-version: ["3.10", "3.11", "3.12"]
 
     runs-on: ${{ matrix.os }}
     steps:
