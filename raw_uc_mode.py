@@ -1,24 +1,18 @@
 import os
 from seleniumbase import SB
+import pyautogui
+import Xlib.display
+from sbvirtualdisplay.display import Display
 
-agent = (
-    "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) "
-    "AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 "
-    "Safari/537.36"
+disp = Display(
+    visible=True, size=(1366, 768), backend="xvfb", use_xauth=True
+)
+disp.start()
+pyautogui._pyautogui_x11._display = (
+    Xlib.display.Display(os.environ['DISPLAY'])
 )
 
-with SB(uc=True, test=True, agent=agent) as sb:
-    import pyautogui
-    import Xlib.display
-    from sbvirtualdisplay.display import Display
-    disp = Display(
-        visible=True, size=(1366, 768), backend="xvfb", use_xauth=True
-    )
-    disp.start()
-    pyautogui._pyautogui_x11._display = (
-        Xlib.display.Display(os.environ['DISPLAY'])
-    )
-
+with SB(uc=True, test=True, headed=True) as sb:
     url = "https://seleniumbase.io/hobbit/login"
     sb.driver.uc_open_with_disconnect(url)
     sb.sleep(3)
@@ -30,32 +24,12 @@ with SB(uc=True, test=True, agent=agent) as sb:
     print(sb.get_text("h1"))
 
 
-with SB(uc=True, test=True, agent=agent) as sb:
-    import pyautogui
-    import Xlib.display
-    from sbvirtualdisplay.display import Display
-    disp = Display(
-        visible=True, size=(1366, 768), backend="xvfb", use_xauth=True
-    )
-    disp.start()
-    pyautogui._pyautogui_x11._display = (
-        Xlib.display.Display(os.environ['DISPLAY'])
-    )
+with SB(uc=True, test=True, headed=True) as sb:
     url = "https://seleniumbase.io/apps/brotector"
     sb.uc_open_with_reconnect(url, 3)
     print(sb.get_text("html"))
 
-with SB(uc=True, test=True, agent=agent) as sb:
-    import pyautogui
-    import Xlib.display
-    from sbvirtualdisplay.display import Display
-    disp = Display(
-        visible=True, size=(1366, 768), backend="xvfb", use_xauth=True
-    )
-    disp.start()
-    pyautogui._pyautogui_x11._display = (
-        Xlib.display.Display(os.environ['DISPLAY'])
-    )
+with SB(uc=True, test=True, headed=True) as sb:
     url = "https://seleniumbase.io/apps/brotector"
     sb.driver.uc_open_with_disconnect(url)
     sb.sleep(3)
@@ -65,22 +39,12 @@ with SB(uc=True, test=True, agent=agent) as sb:
     sb.connect()
     print(sb.get_text("html"))
 
-with SB(uc=True, test=True, agent=agent) as sb:
-    import pyautogui
-    import Xlib.display
-    from sbvirtualdisplay.display import Display
-    disp = Display(
-        visible=True, size=(1366, 768), backend="xvfb", use_xauth=True
-    )
-    disp.start()
-    pyautogui._pyautogui_x11._display = (
-        Xlib.display.Display(os.environ['DISPLAY'])
-    )
+with SB(uc=True, test=True, headed=True) as sb:
     url = "https://user-agent-client-hints.glitch.me/"
     sb.uc_open_with_reconnect(url, 3)
     print(sb.get_text("html"))
 
-with SB(test=True) as sb:
+with SB(test=True, headed=True) as sb:
     url = "https://user-agent-client-hints.glitch.me/"
     sb.open(url)
     print(sb.get_text("html"))
