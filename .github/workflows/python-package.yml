@@ -66,9 +66,6 @@ jobs:
       run: |
         python -c "from seleniumbase.core import detect_b_ver; print(detect_b_ver.get_binary_location('google-chrome'))"
         python -c "from seleniumbase import undetected; print(undetected.find_chrome_executable())"
-    - name: Run "xhost +"
-      run: |
-        xhost +SI:localuser:root
     #- name: Run pytest test_verify_undetected.py
     #  run: |
     #    pytest test_verify_undetected.py -v -s --uc --reruns=2 --proxy=89.187.179.163:8443

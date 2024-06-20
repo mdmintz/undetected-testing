@@ -55,9 +55,6 @@ jobs:
     - name: Display Chrome binary that's used
       run: |
         python -c "from seleniumbase import undetected; print(undetected.find_chrome_executable())"
-    - name: Run "xhost +"
-      run: |
-        xhost +SI:localuser:root
     #- name: Run pytest test_verify_undetected.py
     #  run: |
     #    pytest test_verify_undetected.py -v -s --uc --user-data-dir=my_data_dir --proxy=89.187.179.163:8443
