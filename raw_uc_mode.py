@@ -5,7 +5,9 @@ with SB(uc=True, test=True, xvfb=True) as sb:
     os.environ["DISPLAY"] = ":0"
     import pyautogui
     import Xlib.display
-    pyautogui._pyautogui_x11._display = Xlib.display.Display(os.environ['DISPLAY'])
+    pyautogui._pyautogui_x11._display = (
+        Xlib.display.Display(os.environ['DISPLAY'])
+    )
 
     url = "https://seleniumbase.io/hobbit/login"
     sb.driver.uc_open_with_disconnect(url)
