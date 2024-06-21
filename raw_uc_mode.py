@@ -3,7 +3,6 @@ from seleniumbase import SB
 import Xlib.display
 from sbvirtualdisplay.display import Display
 
-print(os.environ['DISPLAY'])
 disp = Display(
     visible=True, size=(1366, 768), backend="xvfb", use_xauth=True
 )
