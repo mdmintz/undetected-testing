@@ -7,8 +7,8 @@ print(hasattr(os.environ, "DISPLAY"))
 disp = Display(
     visible=True, size=(1366, 768), backend="xvfb", use_xauth=True
 )
-print(hasattr(os.environ, "DISPLAY"))
 disp.start()
+print(hasattr(os.environ, "DISPLAY"))
 print(os.environ['DISPLAY'])
 import pyautogui  # noqa
 print(pyautogui._pyautogui_x11._display)
