@@ -8,9 +8,15 @@ disp = Display(
 )
 disp.start()
 import pyautogui  # noqa
+print(pyautogui._pyautogui_x11._display)
 pyautogui._pyautogui_x11._display = (
     Xlib.display.Display(os.environ['DISPLAY'])
 )
+print(pyautogui._pyautogui_x11._display)
+pyautogui._pyautogui_x11._display = (
+    Xlib.display.Display(os.environ['DISPLAY'])
+)
+print(pyautogui._pyautogui_x11._display)
 
 with SB(uc=True, test=True, rtf=True, headed=True) as sb:
     url = "https://seleniumbase.io/hobbit/login"
