@@ -3,12 +3,12 @@ from seleniumbase import SB
 import Xlib.display
 from sbvirtualdisplay.display import Display
 
-print(hasattr(os.environ, "DISPLAY"))
+print("DISPLAY" in os.environ.keys())
 disp = Display(
     visible=True, size=(1366, 768), backend="xvfb", use_xauth=True
 )
 disp.start()
-print(hasattr(os.environ, "DISPLAY"))
+print("DISPLAY" in os.environ.keys())
 print(os.environ['DISPLAY'])
 import pyautogui  # noqa
 print(pyautogui._pyautogui_x11._display)
