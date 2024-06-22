@@ -1,5 +1,4 @@
 """UC Mode has PyAutoGUI methods for CAPTCHA-bypass."""
-import os
 from seleniumbase import SB
 
 with SB(uc=True, test=True, rtf=True, xvfb=True) as sb:
