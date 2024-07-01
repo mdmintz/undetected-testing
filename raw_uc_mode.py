@@ -13,9 +13,12 @@ with SB(uc=True, test=True, rtf=True) as sb:
 
 with SB(uc=True, test=True) as sb:
     url = "https://www.virtualmanager.com/en/login"
-    sb.uc_open_with_reconnect(url, 4)
-    print(sb.get_page_title())
-    sb.uc_gui_handle_cf()  # Ready if needed!
+    # sb.uc_open_with_reconnect(url, 4)
+    # print(sb.get_page_title())
+    # sb.uc_gui_handle_cf()  # Ready if needed!
+    sb.uc_open_with_disconnect(url, 5)
+    sb.uc_gui_press_keys("\t ")
+    sb.reconnect(4)
     print(sb.get_page_title())
     sb.assert_element('input[name*="email"]')
     sb.assert_element('input[name*="login"]')
