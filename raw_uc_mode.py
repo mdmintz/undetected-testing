@@ -11,11 +11,11 @@ with SB(uc=True, test=True, rtf=True) as sb:
     sb.set_messenger_theme(location="bottom_center")
     sb.post_message("SeleniumBase wasn't detected!")
 
-with SB(uc=True, test=True) as sb:
+agent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) Chrome/126.0.0.0"
+
+with SB(uc=True, test=True, agent=agent) as sb:
     url = "https://www.virtualmanager.com/en/login"
     sb.uc_open_with_reconnect(url, 6)
-    print(sb.get_page_title())
-    sb.uc_gui_handle_cf()  # Ready if needed!
     print(sb.get_page_title())
     sb.uc_gui_handle_cf()  # Ready if needed!
     print(sb.get_page_title())
