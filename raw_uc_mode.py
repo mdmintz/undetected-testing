@@ -13,7 +13,9 @@ with SB(uc=True, test=True, rtf=True) as sb:
 
 with SB(uc=True, test=True) as sb:
     url = "https://www.virtualmanager.com/en/login"
-    sb.uc_open_with_reconnect(url, 4)
+    sb.uc_open_with_reconnect(url, 6)
+    print(sb.get_page_title())
+    sb.uc_gui_handle_cf()  # Ready if needed!
     print(sb.get_page_title())
     sb.uc_gui_handle_cf()  # Ready if needed!
     print(sb.get_page_title())
