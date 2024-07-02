@@ -1,7 +1,7 @@
-name: CI build with User Data Dir
+name: CI build
 on:
   schedule:
-    - cron: "18 * * * *"
+    - cron: "14 * * * *"
   push:
     branches: [ master ]
   pull_request:
@@ -18,7 +18,7 @@ jobs:
       fail-fast: false
       max-parallel: 3
       matrix:
-        os: [ubuntu-20.04]
+        os: [windows-latest]
         python-version: ["3.10", "3.11", "3.12"]
 
     runs-on: ${{ matrix.os }}
@@ -28,16 +28,6 @@ jobs:
       uses: actions/setup-python@v5
       with:
         python-version: ${{ matrix.python-version }}
-    - name: Set Locale
-      run: |
-        sudo apt-get install tzdata locales -y && sudo locale-gen en_US.UTF-8
-        sudo localectl set-locale LANG="en_US.UTF-8"
-        export LANG="en_US.UTF-8"
-        sudo update-locale
-        locale -a
-        locale
-        locale -c -k LC_NUMERIC
-        localectl status
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
@@ -52,7 +42,7 @@ jobs:
         # Stop the build if there are flake8 issues
         flake8 . --count --show-source --statistics --exclude=temp
     - name: Install Chrome
-      if: matrix.os == 'ubuntu-22.04'
+      if: matrix.os == 'ubuntu-20.04'
       run: |
         sudo apt install google-chrome-stable
     - name: Check the console scripts interface
@@ -66,8 +56,15 @@ jobs:
       run: |
         echo "def test_1(): pass" > nothing.py
         pytest nothing.py --uc
+    - name: Check which Chrome binaries exist
+      run: |
+        python -c "import os; print(os.path.exists('/usr/bin/google-chrome'))"
+        python -c "import os; print(os.path.exists('/bin/google-chrome-stable'))"
+        python -c "import os; print(os.path.exists('/bin/chromium-browser'))"
+        python -c "import os; print(os.path.exists('/bin/chromium'))"
     - name: Display Chrome binary that's used
       run: |
+        python -c "from seleniumbase.core import detect_b_ver; print(detect_b_ver.get_binary_location('google-chrome'))"
         python -c "from seleniumbase import undetected; print(undetected.find_chrome_executable())"
     - name: Run python raw_uc_mode.py
       run: |
