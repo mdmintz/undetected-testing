@@ -21,17 +21,3 @@ with SB(uc=True, test=True) as sb:
     sb.assert_element('input[name*="login"]')
     sb.set_messenger_theme(location="bottom_center")
     sb.post_message("SeleniumBase wasn't detected!")
-
-with SB(uc=True, test=True, incognito=True) as sb:
-    print("\n")
-    url = "https://www.virtualmanager.com/en/login"
-    sb.uc_open_with_disconnect(url, 6)
-    sb.uc_gui_press_key("\t")
-    sb.sleep(0.5)
-    sb.uc_gui_press_key(" ")
-    sb.reconnect(4)
-    print(sb.get_page_title())
-    sb.assert_element('input[name*="email"]')
-    sb.assert_element('input[name*="login"]')
-    sb.set_messenger_theme(location="bottom_center")
-    sb.post_message("SeleniumBase wasn't detected!")
