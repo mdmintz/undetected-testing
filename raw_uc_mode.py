@@ -6,16 +6,16 @@ def get_screen_target(driver, selector):
     """Get the screen coordinates of an element's midpoint."""
     element = driver.find_element(selector)
     element_rect = element.rect
-    element_width = element_rect["width"]
-    element_height = element_rect["height"]
+    # element_width = element_rect["width"]
+    # element_height = element_rect["height"]
     window_rect = driver.get_window_rect()
     window_bottom_y = window_rect["y"] + window_rect["height"]
     viewport_height = driver.execute_script("return window.innerHeight;")
     viewport_x = window_rect["x"] + element_rect["x"]
     viewport_y = window_bottom_y - viewport_height + element_rect["y"]
-    mid_x = int(element_width / 2) + 1
-    mid_y = int(element_height / 2) + 1
-    return (viewport_x + mid_x, viewport_y + mid_y)
+    # mid_x = int(element_width / 2) + 2
+    # mid_y = int(element_height / 2) + 1
+    return (viewport_x, viewport_y)
 
 
 def get_configured_pyautogui(pyautogui_copy):
@@ -40,7 +40,11 @@ with SB(uc=True, test=True, rtf=True) as sb:
 with SB(uc=True, test=True) as sb:
     url = "https://www.virtualmanager.com/en/login"
     sb.uc_open_with_reconnect(url, 6)
+    x1, y1 = get_screen_target(sb.driver, "iframe")
     sb.switch_to_frame("iframe")
+    span = sb.get_element("span")
+    x = x1 + span.rect["x"] + int(span.rect["width"] / 2)
+    y = y1 + span.rect["y"] + int(span.rect["height"] / 2)
     x, y = get_screen_target(sb.driver, "span")
     print((x, y))
     sb.disconnect()
