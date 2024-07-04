@@ -45,7 +45,6 @@ with SB(uc=True, test=True) as sb:
     span = sb.get_element("span")
     x = x1 + span.rect["x"] + int(span.rect["width"] / 2)
     y = y1 + span.rect["y"] + int(span.rect["height"] / 2)
-    x, y = get_screen_target(sb.driver, "span")
     print((x, y))
     sb.disconnect()
     sb.sleep(1)
