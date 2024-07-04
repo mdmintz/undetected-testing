@@ -2,19 +2,20 @@
 from seleniumbase import SB
 
 
-def get_element_screen_position(driver, selector):
+def get_screen_target(driver, selector):
+    """Get the screen coordinates of an element's midpoint."""
     element = driver.find_element(selector)
-    element_location = element.location
-    window_position = driver.get_window_position()
-    window_size = driver.get_window_size()
-    window_bottom_y = window_position["y"] + window_size["height"]
+    element_rect = element.rect
+    element_width = element_rect["width"]
+    element_height = element_rect["height"]
+    window_rect = driver.get_window_rect()
+    window_bottom_y = window_rect["y"] + window_rect["height"]
     viewport_height = driver.execute_script("return window.innerHeight;")
-    # viewport_width = driver.execute_script("return window.innerWidth;")
-    viewport_x = window_position["x"] + element_location["x"]
-    viewport_y = window_bottom_y - viewport_height
-    element_pos_x = element_location["x"]
-    element_pos_y = element_location["y"]
-    return (viewport_x + element_pos_x, viewport_y + element_pos_y)
+    viewport_x = window_rect["x"] + element_rect["x"]
+    viewport_y = window_bottom_y - viewport_height + element_rect["y"]
+    mid_x = int(element_width / 2) + 1
+    mid_y = int(element_height / 2) + 1
+    return (viewport_x + mid_x, viewport_y + mid_y)
 
 
 def get_configured_pyautogui(pyautogui_copy):
@@ -40,7 +41,7 @@ with SB(uc=True, test=True) as sb:
     url = "https://www.virtualmanager.com/en/login"
     sb.uc_open_with_reconnect(url, 6)
     sb.switch_to_frame("iframe")
-    x, y = get_element_screen_position(sb.driver, "span")
+    x, y = get_screen_target(sb.driver, "span")
     print((x, y))
     sb.disconnect()
     sb.sleep(1)
