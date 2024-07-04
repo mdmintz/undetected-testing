@@ -46,7 +46,8 @@ with SB(uc=True, test=True) as sb:
     sb.sleep(1)
     import pyautogui
     pyautogui = get_configured_pyautogui(pyautogui)
-    pyautogui.click(x + 14, y + 14, 2, pyautogui.easeOutQuad)
+    pyautogui.moveTo(100, 100, 2, pyautogui.easeOutQuad)  
+    pyautogui.click(x + 14, y + 14)
     sb.sleep(4)
     sb.connect()
     # print(sb.get_page_title())
@@ -60,7 +61,8 @@ with SB(uc=True, test=True) as sb:
 with SB(uc=True, test=True) as sb:
     url = "https://www.virtualmanager.com/en/login"
     sb.uc_open_with_disconnect(url, 6)
-    pyautogui.click(x + 14, y + 14, 2, pyautogui.easeOutQuad)
+    pyautogui.moveTo(100, 100, 2, pyautogui.easeOutQuad)  
+    pyautogui.click(x + 14, y + 14)
     sb.sleep(4)
     sb.connect()
     print(sb.get_page_title())
