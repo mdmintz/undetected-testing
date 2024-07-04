@@ -41,6 +41,7 @@ with SB(uc=True, test=True) as sb:
     sb.uc_open_with_reconnect(url, 6)
     sb.switch_to_frame("iframe")
     x, y = get_element_screen_position(sb.driver, "span")
+    print((x, y))
     sb.disconnect()
     sb.sleep(1)
     import pyautogui
@@ -50,6 +51,18 @@ with SB(uc=True, test=True) as sb:
     sb.connect()
     # print(sb.get_page_title())
     # sb.uc_gui_handle_cf()  # Ready if needed!
+    print(sb.get_page_title())
+    sb.assert_element('input[name*="email"]')
+    sb.assert_element('input[name*="login"]')
+    sb.set_messenger_theme(location="bottom_center")
+    sb.post_message("SeleniumBase wasn't detected!")
+
+with SB(uc=True, test=True) as sb:
+    url = "https://www.virtualmanager.com/en/login"
+    sb.uc_open_with_disconnect(url, 6)
+    pyautogui.click(x=x + 14, y=y + 14)
+    sb.sleep(4)
+    sb.connect()
     print(sb.get_page_title())
     sb.assert_element('input[name*="email"]')
     sb.assert_element('input[name*="login"]')
