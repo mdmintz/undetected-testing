@@ -79,9 +79,9 @@ jobs:
     - name: Run python test_user_agent.py
       run: |
         python test_user_agent.py
-    - name: Run python raw_uc_mode.py
+    - name: Run python raw_uc_mode.py --debug
       run: |
-        python raw_uc_mode.py
+        python raw_uc_mode.py --debug
     - name: Run python raw_demo_script.py
       run: |
         python raw_demo_script.py
