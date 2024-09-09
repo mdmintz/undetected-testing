@@ -69,6 +69,9 @@ jobs:
     - name: Display Chrome binary that's used
       run: |
         python -c "from seleniumbase import undetected; print(undetected.find_chrome_executable())"
+    - name: Run python test_user_agent.py
+      run: |
+        python test_user_agent.py
     - name: Run python raw_uc_mode.py
       run: |
         python raw_uc_mode.py
