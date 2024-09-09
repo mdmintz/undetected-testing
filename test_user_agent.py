@@ -1,6 +1,6 @@
 import pytest
 from seleniumbase import BaseCase
-BaseCase.main(__name__, __file__)
+BaseCase.main(__name__, __file__, "--uc")
 
 
 @pytest.mark.offline  # Can be run with: "pytest -m offline"
