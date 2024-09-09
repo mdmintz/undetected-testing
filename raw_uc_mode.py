@@ -11,7 +11,7 @@ with SB(uc=True, test=True, rtf=True) as sb:
     sb.set_messenger_theme(location="bottom_center")
     sb.post_message("SeleniumBase wasn't detected!")
 
-with SB(uc=True, test=True) as sb:
+with SB(uc=True, test=True, incognito=True) as sb:
     url = "https://www.virtualmanager.com/en/login"
     sb.uc_open_with_reconnect(url, 4)
     print(sb.get_page_title())
