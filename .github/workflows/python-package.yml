@@ -81,7 +81,7 @@ jobs:
         python test_user_agent.py
     - name: Run python raw_uc_mode.py --debug
       run: |
-        python raw_uc_mode.py --debug --proxy=example1
+        python raw_uc_mode.py --debug
     - name: Run python no_driver.py
       run: |
         python no_driver.py
