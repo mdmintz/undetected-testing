@@ -84,7 +84,7 @@ jobs:
         python raw_uc_mode.py --debug
     - name: Run python no_driver.py
       run: |
-        python no_driver.py
+        DISPLAY=:0 python no_driver.py
     - name: Run python raw_demo_script.py
       run: |
         python raw_demo_script.py
