@@ -1,6 +1,5 @@
 import nodriver
 import time
-import os
 from sbvirtualdisplay.display import Display
 import pyautogui
 import Xlib.display
@@ -9,9 +8,8 @@ import Xlib.display
 async def main():
     browser = await nodriver.start()
     page = await browser.get("https://www.virtualmanager.com/en/login")
-    os.environ['DISPLAY'] = ':0'
     pyautogui._pyautogui_x11._display = (
-        Xlib.display.Display(os.environ['DISPLAY'])
+        Xlib.display.Display(':0')
     )
     print(await page.evaluate("document.title"))
     time.sleep(3)
