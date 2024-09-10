@@ -13,7 +13,8 @@ with SB(uc=True, test=True, rtf=True) as sb:
 
 with SB(uc=True, test=True) as sb:
     url = "https://www.virtualmanager.com/en/login"
-    sb.uc_open_with_reconnect(url, 6)
+    sb.uc_open_with_disconnect(url)
+    sb.sleep(6)
     sb.uc_gui_click_x_y(228, 387)
     sb.sleep(3)
     sb.uc_gui_click_x_y(228, 387)
