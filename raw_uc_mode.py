@@ -13,7 +13,7 @@ with SB(uc=True, test=True) as sb:
         "Just a moment" in sb.get_page_title()
         and hasattr(sb_config, "_saved_cf_x_y")
     ):
-        sb.uc_open_with_disconnect()
+        sb.uc_open_with_disconnect(url)
         sb.sleep(4)
         x, y = sb_config._saved_cf_x_y
         pyautogui.moveTo(x, y, 1.05, pyautogui.easeOutQuad)
