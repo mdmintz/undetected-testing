@@ -3,7 +3,6 @@ from seleniumbase import SB
 from seleniumbase import config as sb_config
 
 with SB(uc=True, test=True) as sb:
-    import pyautogui
     url = "https://www.virtualmanager.com/en/login"
     sb.uc_open_with_reconnect(url, 6)
     print(sb.get_page_title())
