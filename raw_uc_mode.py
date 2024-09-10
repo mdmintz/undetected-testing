@@ -11,11 +11,11 @@ with SB(uc=True, test=True, rtf=True) as sb:
     sb.set_messenger_theme(location="bottom_center")
     sb.post_message("SeleniumBase wasn't detected!")
 
-with SB(uc=True, test=True, incognito=True) as sb:
+with SB(uc=True, test=True) as sb:
     url = "https://www.virtualmanager.com/en/login"
     sb.uc_open_with_reconnect(url, 4)
     print(sb.get_page_title())
-    sb.uc_gui_click_captcha(blind=True)  # Only if needed
+    sb.uc_gui_handle_captcha()  # Only if needed
     print(sb.get_page_title())
     sb.assert_element('input[name*="email"]')
     sb.assert_element('input[name*="login"]')
