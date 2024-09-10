@@ -79,9 +79,9 @@ jobs:
     - name: Run python test_user_agent.py
       run: |
         python test_user_agent.py
-    - name: Run python raw_uc_mode.py --debug
+    - name: Run python raw_uc_mode.py --debug --agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) Chrome/126.0.0.0"
       run: |
-        python raw_uc_mode.py --debug
+        python raw_uc_mode.py --debug --agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) Chrome/126.0.0.0"
     - name: Run python no_driver.py
       run: |
         DISPLAY=:0 python no_driver.py
