@@ -1,5 +1,6 @@
 """UC Mode has PyAutoGUI methods for CAPTCHA-bypass."""
 from seleniumbase import SB
+import pyautogui
 
 with SB(uc=True, test=True, rtf=True) as sb:
     url = "https://seleniumbase.io/hobbit/login"
@@ -15,14 +16,18 @@ with SB(uc=True, test=True) as sb:
     url = "https://www.virtualmanager.com/en/login"
     sb.uc_open_with_disconnect(url)
     sb.sleep(6)
-    sb.uc_gui_click_x_y(228, 387)
+    pyautogui.moveTo(228, 387)
+    pyautogui.click()
     sb.sleep(3)
-    sb.uc_gui_click_x_y(228, 387)
+    pyautogui.moveTo(228, 387)
+    pyautogui.click()
     sb.sleep(3)
-    sb.uc_gui_click_x_y(228, 387)
+    pyautogui.moveTo(228, 387)
+    pyautogui.click()
     sb.sleep(3)
     # print(sb.get_page_title())
     # sb.uc_gui_click_captcha()  # Only if needed
+    sb.reconnect()
     print(sb.get_page_title())
     sb.assert_element('input[name*="email"]')
     sb.assert_element('input[name*="login"]')
