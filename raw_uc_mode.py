@@ -16,9 +16,7 @@ with SB(uc=True, test=True) as sb:
         sb.uc_open_with_disconnect(url)
         sb.sleep(4)
         x, y = sb_config._saved_cf_x_y
-        pyautogui.moveTo(x, y, 1.05, pyautogui.easeOutQuad)
-        sb.sleep(0.056)
-        pyautogui.click()
+        sb.uc_gui_click_x_y(x, y)
         sb.sleep(3)
         sb.reconnect()
     print(sb.get_page_title())
