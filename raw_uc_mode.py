@@ -6,10 +6,9 @@ with SB(uc=True, test=True) as sb:
     url = "https://www.virtualmanager.com/en/login"
     sb.uc_open_with_disconnect(url)
     sb.sleep(6)
-    for i in range(2):
-        pyautogui.moveTo(228, 387)
-        pyautogui.click()
-        sb.sleep(3)
+    pyautogui.moveTo(228, 387)
+    pyautogui.click()
+    sb.sleep(3)
     sb.reconnect()
     print(sb.get_page_title())
     sb.assert_element('input[name*="email"]')
