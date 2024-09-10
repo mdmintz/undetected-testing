@@ -3,7 +3,7 @@ from sbvirtualdisplay import Display
 import os
 
 display = Display(
-    visible=True, size=(1920, 1080), backend="xvfb", use_xauth=True
+    visible=True, size=(1366, 768), backend="xvfb", use_xauth=True
 )
 display.start()
 os.environ["DISPLAY"] = f":{display.display}"
