@@ -6,7 +6,8 @@ with SB(uc=True, test=True) as sb:
     url = "https://www.virtualmanager.com/en/login"
     sb.uc_open_with_disconnect(url)
     sb.sleep(6)
-    pyautogui.moveTo(228, 387)
+    pyautogui.moveTo(228, 387, 1.05, pyautogui.easeOutQuad)
+    sb.sleep(0.056)
     pyautogui.click()
     sb.sleep(3)
     sb.reconnect()
