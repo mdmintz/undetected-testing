@@ -1,6 +1,6 @@
 from seleniumbase import SB
 
-with SB(uc=True, headed=True) as sb:
+with SB(uc=True, xvfb=True) as sb:
     url = "https://gitlab.com/users/sign_in"
     sb.uc_open_with_reconnect(url, 10)
     sb.uc_gui_click_captcha()
