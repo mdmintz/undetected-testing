@@ -15,9 +15,8 @@ with SB(uc=True, test=True, rtf=True) as sb:
 with SB(uc=True, test=True) as sb:
     import pyautogui
     url = "https://www.virtualmanager.com/en/login"
-    sb.uc_open_with_reconnect(url, 6)
+    sb.uc_open_with_reconnect(url, 4)
     sb.uc_gui_click_captcha()
-    sb.sleep(3)
     print(sb.get_page_title())
     if (
         "Just a moment" in sb.get_page_title()
