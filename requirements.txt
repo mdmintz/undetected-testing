@@ -1,6 +1,6 @@
-seleniumbase>=4.30.5
+seleniumbase>=4.30.8
 nodriver
 pyvirtualdisplay
-pdbp>=1.5.3
+pdbp>=1.5.4
 tabcompleter>=1.3.3
 sbvirtualdisplay>=1.3.0
