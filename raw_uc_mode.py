@@ -1,11 +1,6 @@
 """UC Mode has PyAutoGUI methods for CAPTCHA-bypass."""
 from seleniumbase import SB
-import tkinter
 
-
-root = tkinter.Tk()
-root.withdraw()
-print(root.winfo_screenwidth(), root.winfo_screenheight())
 
 with SB(uc=True, test=True, rtf=True) as sb:
     url = "https://seleniumbase.io/hobbit/login"
