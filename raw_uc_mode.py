@@ -1,5 +1,9 @@
 """UC Mode has PyAutoGUI methods for CAPTCHA-bypass."""
 from seleniumbase import SB
+from screeninfo import get_monitors
+
+
+print(get_monitors()[0])
 
 with SB(uc=True, test=True, rtf=True) as sb:
     url = "https://seleniumbase.io/hobbit/login"
