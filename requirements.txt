@@ -1,4 +1,5 @@
 seleniumbase>=4.30.8
+nodriver
 pyvirtualdisplay
 pdbp
 tabcompleter
