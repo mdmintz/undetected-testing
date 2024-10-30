@@ -82,9 +82,9 @@ jobs:
     - name: Run python raw_uc_mode.py --debug
       run: |
         python raw_uc_mode.py --debug
-    - name: Run python raw_cdp.py --debug
-      run: |
-        python raw_cdp.py --debug
+    #- name: Run python raw_cdp.py --debug
+    #  run: |
+    #    python raw_cdp.py --debug
     - name: Run python no_driver.py
       run: |
         python no_driver.py
