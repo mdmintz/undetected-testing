@@ -11,7 +11,7 @@ def main():
     url0 = "about:blank"  # Set Locale code from here first
     url1 = "https://www.priceline.com/"  # (The "real" URL)
     loop = asyncio.new_event_loop()
-    driver = cdp_driver.cdp_util.start_sync(headless=True)
+    driver = cdp_driver.cdp_util.start_sync()
     page = loop.run_until_complete(driver.get(url0))
     sb = sb_cdp.CDPMethods(loop, page, driver)
     sb.set_locale("en")  # This test expects English locale
