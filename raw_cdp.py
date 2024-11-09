@@ -42,5 +42,5 @@ def main():
 
 
 if __name__ == "__main__":
-    with suppress(Exception):
-        main()
+    # with suppress(Exception):
+    main()
