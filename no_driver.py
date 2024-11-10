@@ -1,6 +1,7 @@
 import nodriver
 import time
 from sbvirtualdisplay import Display
+from seleniumbase.fixtures import shared_utils
 
 
 async def main():
@@ -13,4 +14,5 @@ async def main():
     display.stop()
 
 if __name__ == "__main__":
+    shared_utils.pip_install("websockets", version="13.1")
     nodriver.loop().run_until_complete(main())
