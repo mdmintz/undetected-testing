@@ -2,7 +2,7 @@
 from seleniumbase import SB
 
 
-with SB(uc=True, test=True, rtf=True) as sb:
+with SB(uc=True, test=True) as sb:
     url = "https://seleniumbase.io/hobbit/login"
     sb.uc_open_with_disconnect(url, 4)
     sb.uc_gui_press_keys("\t ")
