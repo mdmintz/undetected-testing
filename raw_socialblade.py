@@ -13,7 +13,12 @@ with SB(uc=True, test=True, ad_block=True, pls="none") as sb:
     sb.cdp.gui_click_element('form[action*="/search"] button')
     sb.sleep(2)
     if not sb.cdp.is_element_visible('a[title="%s"] h2' % channel_name):
-        print(sb.get_text("body"))
+        sb.cdp.open(
+            "https://socialblade.com/youtube/channel/UCSQElO8vQmNPuTgdd83BHdw"
+        )
+        sb.sleep(1)
+        sb.uc_gui_click_captcha()
+    sb.sleep(1)
     sb.cdp.click('a[title="%s"] h2' % channel_name)
     sb.sleep(1.5)
     sb.cdp.remove_elements("#lngtd-top-sticky")
