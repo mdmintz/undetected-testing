@@ -4,13 +4,16 @@ from seleniumbase import SB
 with SB(uc=True, test=True, ad_block=True, pls="none") as sb:
     url = "https://socialblade.com/"
     sb.activate_cdp_mode(url)
-    sb.sleep(1.5)
+    sb.sleep(2)
     sb.uc_gui_click_captcha()
-    sb.sleep(0.5)
+    sb.sleep(1)
     channel_name = "michaelmintz"
     sb.cdp.press_keys('input[name="query"]', channel_name)
-    sb.cdp.click('form[action*="/search"] button')
+    sb.sleep(1)
+    sb.cdp.gui_click_element('form[action*="/search"] button')
     sb.sleep(2)
+    if not sb.cdp.is_element_visible('a[title="%s"] h2' % channel_name):
+        print(sb.get_text("body"))
     sb.cdp.click('a[title="%s"] h2' % channel_name)
     sb.sleep(1.5)
     sb.cdp.remove_elements("#lngtd-top-sticky")
