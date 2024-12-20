@@ -18,8 +18,8 @@ with SB(uc=True, test=True, ad_block=True, pls="none") as sb:
         )
         sb.sleep(1)
         sb.uc_gui_click_captcha()
-    sb.sleep(1)
-    sb.cdp.click('a[title="%s"] h2' % channel_name)
+    else:
+        sb.cdp.click('a[title="%s"] h2' % channel_name)
     sb.sleep(1.5)
     sb.cdp.remove_elements("#lngtd-top-sticky")
     sb.sleep(1.5)
