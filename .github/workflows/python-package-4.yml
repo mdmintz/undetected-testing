@@ -29,6 +29,7 @@ jobs:
       with:
         python-version: ${{ matrix.python-version }}
     - name: Set Locale
+      if: runner.os == 'Linux'
       run: |
         sudo apt-get install tzdata locales -y && sudo locale-gen en_US.UTF-8
         sudo localectl set-locale LANG="en_US.UTF-8"
@@ -45,6 +46,9 @@ jobs:
         pip install --upgrade wheel
         pip install -r requirements.txt
         pip install --upgrade pyautogui
+    - name: Install extra dependencies
+      if: runner.os == 'Linux'
+      run: |
         pip install --upgrade python-xlib
     - name: Lint with flake8
       run: |
