@@ -10,3 +10,4 @@ with SB(uc=True, test=True, incognito=True) as sb:
     sb.highlight('[data-test="search-button"]')
     sb.highlight('[data-test="sign-in-button"]')
     sb.highlight('[data-test="company-search-autocomplete"]')
+    print("Bypassed anti-bot defenses!")
