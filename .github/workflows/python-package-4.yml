@@ -80,6 +80,10 @@ jobs:
       run: |
         python -c "from seleniumbase.core import detect_b_ver; print(detect_b_ver.get_binary_location('google-chrome'))"
         python -c "from seleniumbase import undetected; print(undetected.find_chrome_executable())"
+    - name: Make sure pytest with sb is working
+      run: |
+        echo "def test_0(sb): pass" > verify_sb.py
+        pytest verify_sb.py --uc
     - name: Run python raw_chatgpt.py --debug
       run: |
         python raw_chatgpt.py --debug
