@@ -18,7 +18,7 @@ jobs:
       fail-fast: false
       max-parallel: 1
       matrix:
-        os: [macos-latest]
+        os: [ubuntu-latest]
         python-version: ["3.13"]
 
     runs-on: ${{ matrix.os }}
@@ -80,10 +80,6 @@ jobs:
       run: |
         python -c "from seleniumbase.core import detect_b_ver; print(detect_b_ver.get_binary_location('google-chrome'))"
         python -c "from seleniumbase import undetected; print(undetected.find_chrome_executable())"
-    - name: Make sure pytest with sb is working
+    - name: Run python raw_glassdoor.py --debug
       run: |
-        echo "def test_0(sb): pass" > verify_sb.py
-        pytest verify_sb.py
-    - name: Run python raw_chatgpt.py --debug
-      run: |
-        python raw_chatgpt.py --debug
+        python raw_glassdoor.py --debug
