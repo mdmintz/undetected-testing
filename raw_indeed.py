@@ -1,7 +1,7 @@
 from seleniumbase import SB
 
 with SB(uc=True, test=True) as sb:
-    url = "https://www.indeed.com/companies/search"
+    url = "https://www.indeed.com/companies"
     company = "NASA Jet Propulsion Laboratory"
     search_box = 'input[data-testid="company-search-box"]'
     sb.activate_cdp_mode(url)
@@ -9,15 +9,11 @@ with SB(uc=True, test=True) as sb:
     if not sb.is_element_present(search_box):
         sb.uc_gui_click_captcha()
         sb.sleep(2)
-    if not sb.is_element_present(search_box):
-        sb.uc_gui_click_captcha()
-        sb.sleep(2)
-    if not sb.is_element_present(search_box):
-        html = sb.cdp.get_element_html("body")
-        soup = sb.get_beautiful_soup(html)
-        print(soup.prettify())
     sb.press_keys(search_box, company)
     sb.click('button[type="submit"]')
+    if not sb.is_element_present('a:contains("%s")' % company):
+        sb.uc_gui_click_captcha()
+        sb.sleep(2)
     sb.click('a:contains("%s")' % company)
     sb.sleep(3)
     sb.cdp.highlight('div[itemprop="name"]')
