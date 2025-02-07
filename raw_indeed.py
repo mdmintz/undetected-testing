@@ -2,12 +2,21 @@ from seleniumbase import SB
 
 with SB(uc=True, test=True) as sb:
     url = "https://www.indeed.com/companies/search"
+    company = "NASA Jet Propulsion Laboratory"
+    search_box = 'input[data-testid="company-search-box"]'
     sb.activate_cdp_mode(url)
     sb.sleep(2)
-    sb.uc_gui_click_captcha()
-    sb.sleep(1)
-    company = "NASA Jet Propulsion Laboratory"
-    sb.press_keys('input[data-testid="company-search-box"]', company)
+    if not sb.is_element_present(search_box):
+        sb.uc_gui_click_captcha()
+        sb.sleep(2)
+    if not sb.is_element_present(search_box):
+        sb.uc_gui_click_captcha()
+        sb.sleep(2)
+    if not sb.is_element_present(search_box):
+        html = sb.cdp.get_element_html("body")
+        soup = sb.get_beautiful_soup(html)
+        print(soup.prettify())
+    sb.press_keys(search_box, company)
     sb.click('button[type="submit"]')
     sb.click('a:contains("%s")' % company)
     sb.sleep(3)
