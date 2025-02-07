@@ -1,22 +1,11 @@
 import asyncio
-import os
-import sys
 from bs4 import BeautifulSoup as Soup
 from seleniumbase.core import sb_cdp
 from seleniumbase.undetected import cdp_driver
 
-binary_location = None
-if "linux" in sys.platform.lower():
-    if os.path.exists("/usr/bin/google-chrome"):
-        binary_location = "/usr/bin/google-chrome"
-    elif os.path.exists("/bin/google-chrome-stable"):
-        binary_location = "/bin/google-chrome-stable"
-
 url = "https://www.indeed.com/companies"
 loop = asyncio.new_event_loop()
-driver = cdp_driver.cdp_util.start_sync(
-    browser_executable_path=binary_location
-)
+driver = cdp_driver.cdp_util.start_sync()
 page = loop.run_until_complete(driver.get(url))
 sb = sb_cdp.CDPMethods(loop, page, driver)
 
