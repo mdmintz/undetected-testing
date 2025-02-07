@@ -15,7 +15,7 @@ if "linux" in sys.platform.lower():
 url = "https://www.indeed.com/companies"
 loop = asyncio.new_event_loop()
 driver = cdp_driver.cdp_util.start_sync(
-    browser_executable_path=binary_location, xvfb=True
+    browser_executable_path=binary_location
 )
 page = loop.run_until_complete(driver.get(url))
 sb = sb_cdp.CDPMethods(loop, page, driver)
