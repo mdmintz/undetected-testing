@@ -7,10 +7,10 @@ from seleniumbase.undetected import cdp_driver
 
 binary_location = None
 if "linux" in sys.platform.lower():
-    if os.path.exists("/bin/google-chrome-stable"):
-        binary_location = "/bin/google-chrome-stable"
-    elif os.path.exists("/usr/bin/google-chrome"):
+    if os.path.exists("/usr/bin/google-chrome"):
         binary_location = "/usr/bin/google-chrome"
+    elif os.path.exists("/bin/google-chrome-stable"):
+        binary_location = "/bin/google-chrome-stable"
 
 url = "https://www.indeed.com/companies"
 loop = asyncio.new_event_loop()
