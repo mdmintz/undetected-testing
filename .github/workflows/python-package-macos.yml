@@ -34,9 +34,7 @@ jobs:
         pip install --upgrade pip
         pip install --upgrade wheel
         pip install -r requirements.txt
-    - name: Install SeleniumBase
-      run: |
-        pip install .
+        pip install --upgrade pyautogui
     - name: Lint with flake8
       run: |
         pip install flake8
