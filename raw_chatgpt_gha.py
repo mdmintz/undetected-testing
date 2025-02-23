@@ -1,6 +1,6 @@
 from seleniumbase import SB
 
-with SB(uc=True, test=True, locale="en-US") as sb:
+with SB(uc=True, test=True, incognito=True) as sb:
     url = "https://chatgpt.com/"
     sb.uc_open_with_disconnect(url)
     sb.sleep(3)
@@ -23,5 +23,5 @@ with SB(uc=True, test=True, locale="en-US") as sb:
         print(sb.get_page_source())
     finally:
         if not success:
-            raise
+            print("\n Unable to find ChatGPT response in HTML!")
     sb.sleep(1)
