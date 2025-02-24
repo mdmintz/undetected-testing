@@ -11,4 +11,4 @@ with SB(uc=True, test=True) as sb:
     sb.highlight('button:contains("Sign in")')
     sb.highlight('h1:contains("GitLab.com")')
     sb.post_message("SeleniumBase wasn't detected", duration=4)
-    print("Success! Website did not detect SeleniumBase!")
+    print("Success! Website did not detect SeleniumBase!!!")
