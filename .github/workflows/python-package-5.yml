@@ -54,7 +54,7 @@ jobs:
     - name: Make sure pytest is working
       run: |
         echo "def test_1(): pass" > nothing.py
-        pytest nothing.py
+        pytest nothing.py --uc
     - name: Run python raw_chatgpt.py --debug
       run: |
         python raw_chatgpt.py --debug
