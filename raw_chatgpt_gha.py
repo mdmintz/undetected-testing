@@ -1,14 +1,13 @@
 from seleniumbase import SB
 
-with SB(uc=True, test=True, incognito=True) as sb:
+with SB(uc=True, test=True) as sb:
     url = "https://chatgpt.com/"
-    sb.uc_open_with_reconnect(url)
-    sb.sleep(1)
+    sb.uc_open_with_reconnect(url, 3)
     sb.uc_gui_click_captcha()
     sb.sleep(1)
     sb.uc_gui_handle_captcha()
     sb.disconnect()
-    sb.sleep(3)
+    sb.sleep(1)
     query = "Compare Playwright to SeleniumBase in under 178 words"
     sb.uc_gui_write(query)
     sb.uc_gui_press_key("ENTER")
