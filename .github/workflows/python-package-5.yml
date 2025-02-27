@@ -55,9 +55,6 @@ jobs:
       run: |
         echo "def test_1(): pass" > nothing.py
         pytest nothing.py
-    - name: Run python test_user_agent.py --debug --uc
-      run: |
-        python test_user_agent.py --debug --uc
     - name: Run python raw_chatgpt.py --debug
       run: |
         python raw_chatgpt.py --debug

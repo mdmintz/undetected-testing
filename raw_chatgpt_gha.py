@@ -8,7 +8,7 @@ with SB(uc=True, test=True, incognito=True) as sb:
     sb.sleep(1)
     sb.uc_gui_handle_captcha()
     sb.disconnect()
-    sb.sleep(1)
+    sb.sleep(3)
     query = "Compare Playwright to SeleniumBase in under 178 words"
     sb.uc_gui_write(query)
     sb.uc_gui_press_key("ENTER")
