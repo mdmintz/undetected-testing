@@ -1,4 +1,4 @@
-name: CI build 5 - Ubuntu
+name: CI build 5 - macOS
 on:
   schedule:
     - cron: "38 * * * *"
@@ -18,7 +18,7 @@ jobs:
       fail-fast: false
       max-parallel: 1
       matrix:
-        os: [ubuntu-latest]
+        os: [macos-latest]
         python-version: ["3.12"]
 
     runs-on: ${{ matrix.os }}
@@ -28,17 +28,6 @@ jobs:
       uses: actions/setup-python@v5
       with:
         python-version: ${{ matrix.python-version }}
-    - name: Set Locale
-      if: runner.os == 'Linux'
-      run: |
-        sudo apt-get install tzdata locales -y && sudo locale-gen en_US.UTF-8
-        sudo localectl set-locale LANG="en_US.UTF-8"
-        export LANG="en_US.UTF-8"
-        sudo update-locale
-        locale -a
-        locale
-        locale -c -k LC_NUMERIC
-        localectl status
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
@@ -46,19 +35,15 @@ jobs:
         pip install --upgrade wheel
         pip install -r requirements.txt
         pip install --upgrade pyautogui
-    - name: Install extra dependencies
-      if: runner.os == 'Linux'
-      run: |
-        pip install --upgrade python-xlib
     - name: Lint with flake8
       run: |
         pip install flake8
         # Stop the build if there are flake8 issues
         flake8 . --count --show-source --statistics --exclude=temp
-    - name: Install Chrome
-      if: matrix.os == 'ubuntu-22.04'
+    - name: Check the console scripts interface (methods)
       run: |
-        sudo apt install google-chrome-stable
+        seleniumbase methods
+        sbase methods
     - name: Check the console scripts interface
       run: |
         seleniumbase
@@ -70,21 +55,7 @@ jobs:
     - name: Make sure pytest is working
       run: |
         echo "def test_1(): pass" > nothing.py
-        pytest nothing.py --uc
-    - name: Check which Chrome binaries exist
-      run: |
-        python -c "import os; print(os.path.exists('/usr/bin/google-chrome'))"
-        python -c "import os; print(os.path.exists('/bin/google-chrome-stable'))"
-        python -c "import os; print(os.path.exists('/bin/chromium-browser'))"
-        python -c "import os; print(os.path.exists('/bin/chromium'))"
-    - name: Display Chrome binary that's used
-      run: |
-        python -c "from seleniumbase.core import detect_b_ver; print(detect_b_ver.get_binary_location('google-chrome'))"
-        python -c "from seleniumbase import undetected; print(undetected.find_chrome_executable())"
-    - name: Make sure pytest with sb is working
-      run: |
-        echo "def test_0(sb): pass" > verify_sb.py
-        pytest verify_sb.py
+        pytest nothing.py
     - name: Run python raw_chatgpt.py --debug
       run: |
         python raw_chatgpt.py --debug
