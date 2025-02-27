@@ -1,7 +1,7 @@
 from contextlib import suppress
 from seleniumbase import SB
 
-with SB(uc=True, test=True, ad_block=True) as sb:
+with SB(uc=True, test=True, incognito=True) as sb:
     url = "https://chatgpt.com/"
     sb.activate_cdp_mode(url)
     sb.sleep(1)
