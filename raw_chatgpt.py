@@ -4,9 +4,11 @@ from seleniumbase import SB
 with SB(uc=True, test=True, ad_block=True) as sb:
     url = "https://chatgpt.com/"
     sb.activate_cdp_mode(url)
+    sb.sleep(1)
     sb.uc_gui_click_captcha()
+    sb.sleep(1)
     sb.uc_gui_handle_captcha()
-    sb.sleep(0.5)
+    sb.sleep(1)
     sb.click_if_visible('button[aria-label="Close dialog"]')
     query = "Compare Playwright to SeleniumBase in under 178 words"
     sb.press_keys("#prompt-textarea", query)
