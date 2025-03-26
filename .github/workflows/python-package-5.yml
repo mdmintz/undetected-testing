@@ -23,9 +23,9 @@ jobs:
 
     runs-on: ${{ matrix.os }}
     steps:
+    - uses: actions/checkout@v4
     - env:
       proxy_1: {{ secrets.PROXY_1 }}
-    - uses: actions/checkout@v4
     - name: Set up Python ${{ matrix.python-version }}
       uses: actions/setup-python@v5
       with:
