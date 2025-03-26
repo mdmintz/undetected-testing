@@ -1,6 +1,7 @@
+import os
 from seleniumbase import SB
 
-with SB(uc=True, test=True) as sb:
+with SB(uc=True, test=True, proxy=os.environ["proxy_1"]) as sb:
     url = "https://chatgpt.com/"
     sb.uc_open_with_reconnect(url, 3)
     sb.uc_gui_click_captcha()
