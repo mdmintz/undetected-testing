@@ -14,7 +14,6 @@ jobs:
 
     env:
       PY_COLORS: "1"
-      proxy_1: {{ secrets.PROXY_1 }}
     strategy:
       fail-fast: false
       max-parallel: 1
@@ -90,5 +89,7 @@ jobs:
       run: |
         python raw_chatgpt.py --debug
     - name: Run python raw_chatgpt_gha.py --debug
+      env:
+        proxy_1: {{ secrets.PROXY_1 }}
       run: |
         python raw_chatgpt_gha.py --debug
