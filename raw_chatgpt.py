@@ -22,5 +22,7 @@ with SB(uc=True, test=True) as sb:
         )
     chat = sb.find_element('[data-message-author-role="assistant"] .markdown')
     soup = sb.get_beautiful_soup(chat.get_html()).get_text("\n").strip()
-    print("*** Response from ChatGPT: ***\n%s" % soup.replace("\n:", ":"))
+    soup = soup.replace("\n\n\n", "\n\n")
+    soup = soup.replace("\n\n\n", "\n\n")
+    print("*** Response from ChatGPT: ***\n%s" % soup)
     sb.sleep(3)

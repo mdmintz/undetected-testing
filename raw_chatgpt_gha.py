@@ -1,14 +1,19 @@
 import os
 from seleniumbase import SB
 
-with SB(uc=True, test=True, proxy=os.environ["proxy_1"]) as sb:
+try:
+    proxy = os.environ["proxy_1"]
+except Exception:
+    proxy = None
+
+with SB(uc=True, test=True, proxy=proxy) as sb:
     url = "https://chatgpt.com/"
-    sb.uc_open_with_reconnect(url, 3)
+    sb.uc_open_with_reconnect(url, 2.5)
     sb.uc_gui_click_captcha()
-    sb.sleep(1)
+    sb.sleep(0.75)
     sb.uc_gui_handle_captcha()
     sb.disconnect()
-    sb.sleep(1)
+    sb.sleep(0.75)
     query = "Compare Playwright to SeleniumBase in under 178 words"
     sb.uc_gui_write(query)
     sb.uc_gui_press_key("ENTER")
@@ -22,7 +27,9 @@ with SB(uc=True, test=True, proxy=os.environ["proxy_1"]) as sb:
         )
         soup = sb.get_beautiful_soup(chat.get_attribute("outerHTML"))
         soup = soup.get_text("\n").strip()
-        print("*** Response from ChatGPT: ***\n%s" % soup.replace("\n:", ":"))
+        soup = soup.replace("\n\n\n", "\n\n")
+        soup = soup.replace("\n\n\n", "\n\n")
+        print("*** Response from ChatGPT: ***\n%s" % soup)
         success = True
     except Exception:
         print(sb.get_page_source())
