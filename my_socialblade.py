@@ -10,20 +10,17 @@ with SB(uc=True, test=True, ad_block=True, pls="none") as sb:
     sb.cdp.remove_elements("#lngtd-top-sticky")
     sb.sleep(1.5)
     name = sb.cdp.get_text("h1")
-    link = sb.cdp.get_attribute("#YouTubeUserTopInfoBlockTop h4 a", "href")
-    subscribers = sb.cdp.get_text("#youtube-stats-header-subs")
-    video_views = sb.cdp.get_text("#youtube-stats-header-views")
-    rankings = sb.cdp.get_text(
-        '#socialblade-user-content [style*="border-bottom"]'
-    ).replace("\xa0", "").replace("   ", " ").replace("  ", " ")
+    source = sb.get_page_source()
+    base = "https://www.youtube.com/c/"
+    base2 = 'href="/youtube/c/'
+    start = source.find(base2) + len(base2)
+    end = source.find('"', start)
+    link = base + source[start:end]
     print("********** SocialBlade Stats for %s: **********" % name)
     print(">>> (Link: %s) <<<" % link)
-    print("* YouTube Subscribers: %s" % subscribers)
-    print("* YouTube Video Views: %s" % video_views)
+    print(sb.get_text('[class*="grid lg:hidden"]'))
     print("********** SocialBlade Ranks: **********")
-    for row in rankings.split("\n"):
-        if len(row.strip()) > 8:
-            print("-->  " + row.strip())
+    print(sb.get_text('[class*="gap-3 flex-1"]'))
     for i in range(17):
         sb.cdp.scroll_down(6)
         sb.sleep(0.1)
