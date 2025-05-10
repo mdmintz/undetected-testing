@@ -97,3 +97,13 @@ jobs:
     - name: Run python raw_cdp_drivers.py
       run: |
         python raw_cdp_drivers.py
+    - name: Run python raw_turnstile.py
+      run: |
+        python raw_turnstile.py
+    - name: Upload screenshots
+      uses: actions/upload-artifact@v4
+      with:
+        name: seleniumbase-screenshots
+        path: |
+          screenshots/*.png
+          latest_logs/**/*.{png,jpg}
