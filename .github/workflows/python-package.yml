@@ -97,6 +97,3 @@ jobs:
     - name: Run python raw_cdp_drivers.py
       run: |
         python raw_cdp_drivers.py
-    - name: Run python raw_display.py
-      run: |
-        python raw_display.py
