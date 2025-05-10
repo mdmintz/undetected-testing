@@ -105,5 +105,4 @@ jobs:
       with:
         name: seleniumbase-screenshots
         path: |
-          ./screenshots/*.png
-          ./latest_logs/**/*.{png,jpg}
+          ./
