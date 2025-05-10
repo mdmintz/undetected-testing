@@ -8,4 +8,3 @@ with SB(uc=True, test=True) as sb:
     sb.set_messenger_theme(location="top_left")
     sb.post_message("SeleniumBase wasn't detected", duration=3)
     sb.save_screenshot_to_logs()
-    sb.save_screenshot("screenshots/my_test_screenshot.png")

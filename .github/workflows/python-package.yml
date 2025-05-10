@@ -105,4 +105,4 @@ jobs:
       with:
         name: seleniumbase-screenshots
         path: |
-          ./
+          ./latest_logs/
