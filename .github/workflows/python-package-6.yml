@@ -1,4 +1,4 @@
-name: CI build
+name: CI build 6
 on:
   schedule:
     - cron: "17 * * * *"
@@ -82,3 +82,6 @@ jobs:
     - name: Run python raw_xhr_sb.py
       run: |
         python raw_xhr_sb.py
+    - name: Run python raw_res_nike.py
+      run: |
+        python raw_res_nike.py
