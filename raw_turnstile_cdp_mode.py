@@ -4,7 +4,7 @@ with SB(uc=True, test=True) as sb:
     url = "https://seleniumbase.io/apps/turnstile"
     sb.activate_cdp_mode(url)
     sb.sleep(1)
-    sb.uc_open_with_reconnect(url)
+    sb.reconnect()
     sb.uc_gui_click_captcha()
     sb.disconnect()
     sb.assert_element("img#captcha-success", timeout=3)
