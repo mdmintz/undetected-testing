@@ -1,4 +1,4 @@
-name: CI build 5 - Ubuntu
+name: CI build 5 - (Ubuntu)
 on:
   schedule:
     - cron: "38 * * * *"

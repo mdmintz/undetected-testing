@@ -82,6 +82,3 @@ jobs:
     - name: Run python raw_nike.py --debug
       run: |
         python raw_nike.py --debug
-    - name: Run python raw_easyjet.py --debug
-      run: |
-        python raw_easyjet.py --debug
