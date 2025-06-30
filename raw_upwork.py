@@ -2,7 +2,8 @@ from seleniumbase import SB
 
 with SB(uc=True, test=True) as sb:
     url = "https://www.upwork.com/nx/search/jobs/"
-    sb.activate_cdp_mode(url)
+    sb.uc_open_with_reconnect(url, reconnect_time=3)
+    sb.uc_gui_click_captcha()
     sb.sleep(2.5)
     sb.uc_gui_click_captcha()
     sb.sleep(2.5)
