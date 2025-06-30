@@ -1,20 +1,20 @@
 from seleniumbase import SB
 
-with SB(uc=True, test=True, locale_code="en", ad_block=True) as sb:
+with SB(uc=True, test=True, locale="en", ad_block=True) as sb:
     url = "https://www.easyjet.com/en/"
     sb.activate_cdp_mode(url)
-    sb.sleep(2.5)
+    sb.sleep(2)
     sb.cdp.click_if_visible("button#ensCloseBanner")
     sb.sleep(1.2)
     sb.cdp.click('input[name="from"]')
     sb.sleep(1.2)
-    sb.cdp.type('input[name="from"]', "London")
+    sb.cdp.type('input[name="from"]', "London Gatwick")
     sb.sleep(0.6)
     sb.cdp.click_if_visible("button#ensCloseBanner")
     sb.sleep(0.6)
     sb.cdp.click('span[data-testid="airport-name"]')
     sb.sleep(1.2)
-    sb.cdp.type('input[name="to"]', "Venice")
+    sb.cdp.type('input[name="to"]', "Paris")
     sb.sleep(1.2)
     sb.cdp.click('span[data-testid="airport-name"]')
     sb.sleep(1.2)
