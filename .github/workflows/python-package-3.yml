@@ -79,12 +79,12 @@ jobs:
       run: |
         python -c "from seleniumbase.core import detect_b_ver; print(detect_b_ver.get_binary_location('google-chrome'))"
         python -c "from seleniumbase import undetected; print(undetected.find_chrome_executable())"
-    - name: Run python my_socialblade.py --debug
-      run: |
-        python my_socialblade.py --debug
-    - name: Run python raw_nike.py --debug
-      run: |
-        python raw_nike.py --debug
+    #- name: Run python my_socialblade.py --debug
+    #  run: |
+    #    python my_socialblade.py --debug
+    #- name: Run python raw_nike.py --debug
+    #  run: |
+    #    python raw_nike.py --debug
     - name: Run python raw_turnstile_cdp_mode_2.py
       run: |
         python raw_turnstile_cdp_mode_2.py --debug
