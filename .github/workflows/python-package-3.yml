@@ -82,3 +82,6 @@ jobs:
     - name: Run python raw_nike.py --debug
       run: |
         python raw_nike.py --debug
+    - name: Run python raw_turnstile_cdp_mode_2.py
+      run: |
+        python raw_turnstile_cdp_mode_2.py --debug
