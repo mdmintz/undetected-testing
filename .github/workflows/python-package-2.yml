@@ -1,4 +1,4 @@
-name: CI Build 1 (macOS)
+name: CI Build 2 (macOS)
 on:
   schedule:
     - cron: "14 * * * *"
@@ -19,7 +19,7 @@ jobs:
       max-parallel: 1
       matrix:
         os: [macos-latest]
-        python-version: ["3.11"]
+        python-version: ["3.12"]
 
     runs-on: ${{ matrix.os }}
     steps:
