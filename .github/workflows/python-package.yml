@@ -100,9 +100,9 @@ jobs:
     - name: Run python raw_turnstile.py
       run: |
         python raw_turnstile.py --debug
-    - name: Run python raw_turnstile_cdp_mode.py
+    - name: Run python raw_upwork_cdp_mode.py
       run: |
-        python raw_turnstile_cdp_mode.py --debug
+        python raw_upwork_cdp_mode.py --debug
     - name: Upload screenshots
       uses: actions/upload-artifact@v4
       with:
