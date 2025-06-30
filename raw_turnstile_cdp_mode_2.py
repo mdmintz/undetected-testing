@@ -1,7 +1,7 @@
 from pyvirtualdisplay import Display
 from seleniumbase import SB
 
-display = Display(visible=1, size=(1600, 900))
+display = Display(visible=0, size=(1600, 900), backend="xvfb")
 display.start()
 
 with SB(uc=True, test=True, headed=True) as sb:
