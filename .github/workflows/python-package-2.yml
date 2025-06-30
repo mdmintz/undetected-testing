@@ -1,4 +1,4 @@
-name: CI Build 2 (macOS)
+name: CI build 2 - (macOS)
 on:
   schedule:
     - cron: "14 * * * *"

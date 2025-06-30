@@ -1,4 +1,4 @@
-name: CI build 1 (Ubuntu)
+name: CI build 1 - (Ubuntu)
 on:
   schedule:
     - cron: "14 * * * *"
