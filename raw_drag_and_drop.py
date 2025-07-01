@@ -163,7 +163,7 @@ with SB(uc=True, test=True, incognito=True) as sb:
     sb.sleep(1)
 
 
-# CDP Mode connected
+# CDP Mode reconnected
 with SB(uc=True, test=True, incognito=True) as sb:
     url = "https://seleniumbase.io/other/drag_and_drop"
     sb.activate_cdp_mode(url)
@@ -173,18 +173,16 @@ with SB(uc=True, test=True, incognito=True) as sb:
     sb.assert_element("#div1 img#drag1")
     sb.sleep(1)
 
-# CDP Mode reconnected with updated code
+# CDP Mode reconnected with clean tab and custom code
 with SB(
     uc=True, test=True, incognito=True, xvfb_metrics="1920,1080"
 ) as sb:
     url = "https://seleniumbase.io/other/drag_and_drop"
-    sb.activate_cdp_mode(url, xvfb=True)
-
+    sb.activate_cdp_mode()
     sb.cdp.open_new_tab(url)
     sb.cdp.switch_to_tab(0)
     sb.cdp.close_active_tab()
     sb.cdp.switch_to_newest_tab()
-
     sb.reconnect()
     sb.assert_element_not_visible("#div1 img#drag1")
     gui_drag_and_drop(sb, "#drag1", "#div1")
