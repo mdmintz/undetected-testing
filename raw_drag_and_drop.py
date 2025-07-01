@@ -164,10 +164,10 @@ with SB(uc=True, test=True, incognito=True) as sb:
     sb.uc_open_with_reconnect(url)
     print(sb.execute_script("return window.innerHeight;"))
 
-    '''sb.assert_element_not_visible("#div1 img#drag1")
+    sb.assert_element_not_visible("#div1 img#drag1")
     gui_drag_and_drop(sb, "#drag1", "#div1")
     sb.assert_element("#div1 img#drag1")
-    sb.sleep(1)'''
+    sb.sleep(1)
 
 '''# CDP Mode
 with SB(uc=True, test=True, incognito=True) as sb:
@@ -195,8 +195,15 @@ with SB(uc=True, test=True, incognito=True) as sb:
     sb.activate_cdp_mode(url)
     print(sb.execute_script("return window.innerHeight;"))
 
-    '''sb.reconnect()
+    sb.cdp.open_new_tab(url)
+    sb.cdp.switch_to_tab(0)
+    sb.cdp.close_active_tab()
+    sb.cdp.switch_to_newest_tab()
+    print(sb.execute_script("return window.innerHeight;"))
+
+    sb.reconnect()
+    print(sb.execute_script("return window.innerHeight;"))
     sb.assert_element_not_visible("#div1 img#drag1")
     gui_drag_and_drop(sb, "#drag1", "#div1")
     sb.assert_element("#div1 img#drag1")
-    sb.sleep(1)'''
+    sb.sleep(1)
