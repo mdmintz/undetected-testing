@@ -86,7 +86,7 @@ jobs:
         pytest verify_sb.py
     - name: Run python raw_drag_and_drop.py --debug
       run: |
-        python raw_drag_and_drop.py --debug --debug-display
+        python raw_drag_and_drop.py --debug
     #- name: Run python raw_indeed.py --debug
     #  run: |
     #    python raw_indeed.py --debug
