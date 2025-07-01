@@ -23,7 +23,7 @@ def get_configured_pyautogui(pyautogui_copy):
                 == pyautogui_copy._pyautogui_x11._display
             )
         ):
-            print(sb_config._pyautogui_x11_display._display)
+            print(sb_config._pyautogui_x11_display.display)
             pass
         else:
             import Xlib.display
