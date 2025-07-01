@@ -174,7 +174,10 @@ with SB(uc=True, test=True, incognito=True) as sb:
 
     sb.open("https://www.signwell.com/online-signature/draw/")
     element = sb.find_element("canvas#canvas_signature")
+    gui_drag_drop_points(sb, 273, 500, 273, 400)
     gui_drag_drop_points(sb, 473, 600, 473, 500)
+    gui_drag_drop_points(sb, 673, 700, 673, 600)
+    gui_drag_drop_points(sb, 873, 800, 873, 700)
     sb.sleep(2)
     sb.fail("log this")
 
@@ -213,7 +216,10 @@ with SB(uc=True, test=True, incognito=True) as sb:
     sb.reconnect()
     sb.open("https://www.signwell.com/online-signature/draw/")
     element = sb.find_element("canvas#canvas_signature")
+    gui_drag_drop_points(sb, 273, 500, 273, 400)
     gui_drag_drop_points(sb, 473, 600, 473, 500)
+    gui_drag_drop_points(sb, 673, 700, 673, 600)
+    gui_drag_drop_points(sb, 873, 800, 873, 700)
     sb.sleep(2)
     sb.fail("log this")
     '''print(sb.execute_script("return window.innerHeight;"))
