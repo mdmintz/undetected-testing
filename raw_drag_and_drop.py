@@ -14,7 +14,6 @@ def get_configured_pyautogui(pyautogui_copy):
         and hasattr(pyautogui_copy, "_pyautogui_x11")
         and "DISPLAY" in os.environ.keys()
     ):
-        print("DISPLAY 1")
         if (
             hasattr(sb_config, "_pyautogui_x11_display")
             and sb_config._pyautogui_x11_display
@@ -24,7 +23,6 @@ def get_configured_pyautogui(pyautogui_copy):
                 == pyautogui_copy._pyautogui_x11._display
             )
         ):
-            print("DISPLAY 2")
             pass
         else:
             import Xlib.display
@@ -34,7 +32,6 @@ def get_configured_pyautogui(pyautogui_copy):
             sb_config._pyautogui_x11_display = (
                 pyautogui_copy._pyautogui_x11._display
             )
-            print("DISPLAY 3")
     return pyautogui_copy
 
 
@@ -161,7 +158,9 @@ def gui_drag_and_drop(sb, drag_selector, drop_selector, timeframe=0.35):
 
 
 # UC Mode
-with SB(uc=True, test=True, incognito=True) as sb:
+with SB(
+    uc=True, test=True, incognito=True, xvfb_metrics="1024,768"
+) as sb:
     url = "https://seleniumbase.io/other/drag_and_drop"
     print(sb.execute_script("return window.innerHeight;"))
     sb.uc_open_with_reconnect(url)
@@ -201,7 +200,9 @@ with SB(uc=True, test=True, incognito=True) as sb:
     sb.sleep(1)'''
 
 # CDP Mode reconnected with updated code
-with SB(uc=True, test=True, incognito=True) as sb:
+with SB(
+    uc=True, test=True, incognito=True, xvfb_metrics="1024,768"
+) as sb:
     url = "https://seleniumbase.io/other/drag_and_drop"
     print(sb.execute_script("return window.innerHeight;"))
     sb.activate_cdp_mode(url)
