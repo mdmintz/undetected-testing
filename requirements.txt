@@ -1,4 +1,4 @@
-seleniumbase>=4.39.6a2
+seleniumbase>=4.39.6
 nodriver
 pyvirtualdisplay
 pdbp
