@@ -14,6 +14,7 @@ def get_configured_pyautogui(pyautogui_copy):
         and hasattr(pyautogui_copy, "_pyautogui_x11")
         and "DISPLAY" in os.environ.keys()
     ):
+        print("DISPLAY 1")
         if (
             hasattr(sb_config, "_pyautogui_x11_display")
             and sb_config._pyautogui_x11_display
@@ -23,6 +24,7 @@ def get_configured_pyautogui(pyautogui_copy):
                 == pyautogui_copy._pyautogui_x11._display
             )
         ):
+            print("DISPLAY 2")
             pass
         else:
             import Xlib.display
@@ -32,6 +34,7 @@ def get_configured_pyautogui(pyautogui_copy):
             sb_config._pyautogui_x11_display = (
                 pyautogui_copy._pyautogui_x11._display
             )
+            print("DISPLAY 3")
     return pyautogui_copy
 
 
@@ -40,13 +43,13 @@ def get_gui_element_rect(sb, selector, by="css selector"):
     element_rect = element.rect
     e_width = element_rect["width"]
     e_height = element_rect["height"]
-    print("e_width, e_height")
-    print(e_width, e_height)
+    # print("e_width, e_height")
+    # print(e_width, e_height)
     i_x = 0
     i_y = 0
     window_rect = sb.get_window_rect()
-    print("window_rect_y, window_rect_height")
-    print(window_rect["y"], window_rect["height"])
+    # print("window_rect_y, window_rect_height")
+    # print(window_rect["y"], window_rect["height"])
     w_bottom_y = window_rect["y"] + window_rect["height"]
     viewport_height = sb.execute_script("return window.innerHeight;")
     print("viewport_height")
@@ -54,8 +57,8 @@ def get_gui_element_rect(sb, selector, by="css selector"):
     x = math.ceil(window_rect["x"] + i_x + element_rect["x"])
     y = math.ceil(w_bottom_y - viewport_height + i_y + element_rect["y"])
     y_scroll_offset = sb.execute_script("return window.pageYOffset;")
-    print("y_scroll_offset")
-    print(y_scroll_offset)
+    # print("y_scroll_offset")
+    # print(y_scroll_offset)
     y = int(y - y_scroll_offset)
     return ({"height": e_height, "width": e_width, "x": x, "y": y})
 
@@ -66,8 +69,8 @@ def get_gui_element_center(sb, selector, by="css selector"):
     This is specifically for PyAutoGUI actions on the full screen.
     (Note: There may be complications if iframes are involved.)"""
     element_rect = get_gui_element_rect(sb, selector, by=by)
-    print("element_rect")
-    print(element_rect)
+    # print("element_rect")
+    # print(element_rect)
     x = element_rect["x"] + (element_rect["width"] / 2.0) + 0.5
     y = element_rect["y"] + (element_rect["height"] / 2.0) + 0.5
     return (x, y)
@@ -77,8 +80,8 @@ def __gui_drag_drop(sb, x1, y1, x2, y2, timeframe=0.25, uc_lock=False):
     import pyautogui
     pyautogui = get_configured_pyautogui(pyautogui)
     screen_width, screen_height = pyautogui.size()
-    print("screen_width, screen_height")
-    print(screen_width, screen_height)
+    # print("screen_width, screen_height")
+    # print(screen_width, screen_height)
     if x1 < 0 or y1 < 0 or x1 > screen_width or y1 > screen_height:
         raise Exception(
             "PyAutoGUI cannot drag-drop from point (%s, %s)"
