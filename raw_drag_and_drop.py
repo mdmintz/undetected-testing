@@ -23,6 +23,7 @@ def get_configured_pyautogui(pyautogui_copy):
                 == pyautogui_copy._pyautogui_x11._display
             )
         ):
+            print(sb_config._pyautogui_x11_display)
             pass
         else:
             import Xlib.display
@@ -176,7 +177,7 @@ with SB(
     gui_drag_drop_points(sb, 273, 500, 273, 400)
     gui_drag_drop_points(sb, 473, 600, 473, 500)
     gui_drag_drop_points(sb, 673, 700, 673, 600)
-    gui_drag_drop_points(sb, 750, 800, 750, 700)
+    gui_drag_drop_points(sb, 873, 800, 873, 700)
     sb.sleep(2)
     sb.fail("log this")
 
@@ -220,7 +221,7 @@ with SB(
     gui_drag_drop_points(sb, 273, 500, 273, 400)
     gui_drag_drop_points(sb, 473, 600, 473, 500)
     gui_drag_drop_points(sb, 673, 700, 673, 600)
-    gui_drag_drop_points(sb, 750, 800, 750, 700)
+    gui_drag_drop_points(sb, 873, 800, 873, 700)
     sb.sleep(2)
     sb.fail("log this")
     '''print(sb.execute_script("return window.innerHeight;"))
