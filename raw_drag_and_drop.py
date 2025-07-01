@@ -204,13 +204,8 @@ with SB(
     uc=True, test=True, incognito=True, xvfb_metrics="1920,1080"
 ) as sb:
     url = "https://seleniumbase.io/other/drag_and_drop"
-    sb.uc_open_with_reconnect(url)
-    sb.open("https://www.signwell.com/online-signature/draw/")
-    element = sb.find_element("canvas#canvas_signature")
-    gui_drag_drop_points(sb, 273, 500, 273, 400)
-
     print(sb.execute_script("return window.innerHeight;"))
-    sb.activate_cdp_mode(url)
+    sb.activate_cdp_mode(url, xvfb=True)
     print(sb.execute_script("return window.innerHeight;"))
 
     sb.cdp.open_new_tab(url)
