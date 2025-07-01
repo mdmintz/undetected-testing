@@ -159,7 +159,7 @@ def gui_drag_and_drop(sb, drag_selector, drop_selector, timeframe=0.35):
 
 # UC Mode
 with SB(
-    uc=True, test=True, incognito=True, xvfb_metrics="1024,768"
+    uc=True, test=True, incognito=True, xvfb_metrics="1920,1080"
 ) as sb:
     url = "https://seleniumbase.io/other/drag_and_drop"
     print(sb.execute_script("return window.innerHeight;"))
@@ -176,7 +176,7 @@ with SB(
     gui_drag_drop_points(sb, 273, 500, 273, 400)
     gui_drag_drop_points(sb, 473, 600, 473, 500)
     gui_drag_drop_points(sb, 673, 700, 673, 600)
-    gui_drag_drop_points(sb, 873, 800, 873, 700)
+    gui_drag_drop_points(sb, 750, 800, 750, 700)
     sb.sleep(2)
     sb.fail("log this")
 
@@ -201,7 +201,7 @@ with SB(uc=True, test=True, incognito=True) as sb:
 
 # CDP Mode reconnected with updated code
 with SB(
-    uc=True, test=True, incognito=True, xvfb_metrics="1024,768"
+    uc=True, test=True, incognito=True, xvfb_metrics="1920,1080"
 ) as sb:
     url = "https://seleniumbase.io/other/drag_and_drop"
     print(sb.execute_script("return window.innerHeight;"))
@@ -220,7 +220,7 @@ with SB(
     gui_drag_drop_points(sb, 273, 500, 273, 400)
     gui_drag_drop_points(sb, 473, 600, 473, 500)
     gui_drag_drop_points(sb, 673, 700, 673, 600)
-    gui_drag_drop_points(sb, 873, 800, 873, 700)
+    gui_drag_drop_points(sb, 750, 800, 750, 700)
     sb.sleep(2)
     sb.fail("log this")
     '''print(sb.execute_script("return window.innerHeight;"))
