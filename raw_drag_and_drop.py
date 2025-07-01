@@ -160,6 +160,7 @@ def gui_drag_and_drop(sb, drag_selector, drop_selector, timeframe=0.35):
 # UC Mode
 with SB(uc=True, test=True, incognito=True) as sb:
     url = "https://seleniumbase.io/other/drag_and_drop"
+    print(sb.execute_script("return window.innerHeight;"))
     sb.uc_open_with_reconnect(url)
     print(sb.execute_script("return window.innerHeight;"))
 
