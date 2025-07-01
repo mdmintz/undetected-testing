@@ -1,36 +1,46 @@
-import asyncio
-from bs4 import BeautifulSoup as Soup
-from seleniumbase.core import sb_cdp
-from seleniumbase.undetected import cdp_driver
+from seleniumbase import SB
+from seleniumbase import config as sb_config
 
-url = "https://www.indeed.com/companies"
-loop = asyncio.new_event_loop()
-driver = cdp_driver.cdp_util.start_sync()
-page = loop.run_until_complete(driver.get(url))
-sb = sb_cdp.CDPMethods(loop, page, driver)
-
-company = "NASA Jet Propulsion Laboratory"
-search_box = 'input[data-testid="company-search-box"]'
-captcha_grid = '[style="display: grid;"]'
-
-if sb.is_element_present(captcha_grid):
-    sb.gui_click_element(captcha_grid)
-
-sb.press_keys(search_box, company)
-sb.click('button[type="submit"]')
-if not sb.is_element_present('a:contains("%s")' % company):
-    if sb.is_element_present(captcha_grid):
-        sb.gui_click_element(captcha_grid)
-
-sb.click('a:contains("%s")' % company)
-sb.sleep(3)
-sb.highlight('div[itemprop="name"]')
-sb.sleep(1)
-sb.highlight('h2:contains("About the company")')
-sb.sleep(2)
-for i in range(10):
-    sb.scroll_down(12)
-    sb.sleep(0.14)
-info = sb.find_element('[data-testid="AboutSection-section"]')
-soup = Soup(info.get_html()).get_text("\n").strip()
-print("*** %s: ***\n%s" % (company, soup.replace("\n:", ":")))
+with SB(uc=True, test=True) as sb:
+    url = "https://www.indeed.com/companies/search"
+    sb.uc_open_with_reconnect(url, 3)
+    sb.uc_gui_click_captcha()
+    sb.sleep(3)
+    if (
+        hasattr(sb_config, "_saved_cf_x_y")
+        and not sb.is_element_visible(
+            'input[data-testid="company-search-box"]'
+        )
+    ):
+        x, y = sb_config._saved_cf_x_y
+        sb.uc_open_with_disconnect(url, 3)
+        sb.uc_gui_click_x_y(x, y)
+        sb.sleep(3)
+        sb.reconnect()
+    company = "NASA Jet Propulsion Laboratory"
+    sb.press_keys('input[data-testid="company-search-box"]', company)
+    sb.click('button[type="submit"]')
+    sb.click('a:contains("%s")' % company)
+    if hasattr(sb_config, "_saved_cf_x_y"):
+        sb.disconnect()
+        x, y = sb_config._saved_cf_x_y
+        sb.uc_gui_click_x_y(x, y)
+        sb.sleep(3)
+    elif sb.is_text_visible("Additional Verification Required"):
+        sb.sleep(3)
+        sb.uc_gui_click_captcha()
+        sb.sleep(3)
+        if sb.is_text_visible("Additional Verification Required"):
+            sb.refresh()
+            sb.disconnect()
+            x, y = sb_config._saved_cf_x_y
+            sb.uc_gui_click_x_y(x, y)
+            sb.sleep(3)
+    sb.reconnect()
+    sb.highlight('div[itemprop="name"]')
+    sb.sleep(1)
+    sb.highlight('h2:contains("About the company")')
+    sb.sleep(2)
+    info = sb.find_element('[data-testid="AboutSection-section"]')
+    info = info.text.strip().replace("\n\n", "\n")
+    print("*** %s: ***\n%s" % (company, info.replace("\n:", ":")))
