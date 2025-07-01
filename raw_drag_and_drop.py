@@ -167,10 +167,16 @@ with SB(uc=True, test=True, incognito=True) as sb:
     sb.uc_open_with_reconnect(url)
     print(sb.execute_script("return window.innerHeight;"))
 
-    sb.assert_element_not_visible("#div1 img#drag1")
+    '''sb.assert_element_not_visible("#div1 img#drag1")
     gui_drag_and_drop(sb, "#drag1", "#div1")
     sb.assert_element("#div1 img#drag1")
-    sb.sleep(1)
+    sb.sleep(1)'''
+
+    sb.open("https://www.signwell.com/online-signature/draw/")
+    element = sb.find_element("canvas#canvas_signature")
+    gui_drag_drop_points(sb, 473, 600, 473, 500)
+    sb.sleep(2)
+    sb.fail("log this")
 
 '''# CDP Mode
 with SB(uc=True, test=True, incognito=True) as sb:
@@ -205,8 +211,13 @@ with SB(uc=True, test=True, incognito=True) as sb:
     print(sb.execute_script("return window.innerHeight;"))
 
     sb.reconnect()
-    print(sb.execute_script("return window.innerHeight;"))
+    sb.open("https://www.signwell.com/online-signature/draw/")
+    element = sb.find_element("canvas#canvas_signature")
+    gui_drag_drop_points(sb, 473, 600, 473, 500)
+    sb.sleep(2)
+    sb.fail("log this")
+    '''print(sb.execute_script("return window.innerHeight;"))
     sb.assert_element_not_visible("#div1 img#drag1")
     gui_drag_and_drop(sb, "#drag1", "#div1")
     sb.assert_element("#div1 img#drag1")
-    sb.sleep(1)
+    sb.sleep(1)'''
