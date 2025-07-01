@@ -40,34 +40,20 @@ def get_gui_element_rect(sb, selector, by="css selector"):
     element_rect = element.rect
     e_width = element_rect["width"]
     e_height = element_rect["height"]
-    # print("e_width, e_height")
-    # print(e_width, e_height)
     i_x = 0
     i_y = 0
     window_rect = sb.get_window_rect()
-    # print("window_rect_y, window_rect_height")
-    # print(window_rect["y"], window_rect["height"])
     w_bottom_y = window_rect["y"] + window_rect["height"]
     viewport_height = sb.execute_script("return window.innerHeight;")
-    print("viewport_height")
-    print(viewport_height)
     x = math.ceil(window_rect["x"] + i_x + element_rect["x"])
     y = math.ceil(w_bottom_y - viewport_height + i_y + element_rect["y"])
     y_scroll_offset = sb.execute_script("return window.pageYOffset;")
-    # print("y_scroll_offset")
-    # print(y_scroll_offset)
     y = int(y - y_scroll_offset)
     return ({"height": e_height, "width": e_width, "x": x, "y": y})
 
 
 def get_gui_element_center(sb, selector, by="css selector"):
-    """Returns the x, y coordinates of the element's center based
-    on the entire GUI / screen, rather than on the browser window.
-    This is specifically for PyAutoGUI actions on the full screen.
-    (Note: There may be complications if iframes are involved.)"""
     element_rect = get_gui_element_rect(sb, selector, by=by)
-    # print("element_rect")
-    # print(element_rect)
     x = element_rect["x"] + (element_rect["width"] / 2.0) + 0.5
     y = element_rect["y"] + (element_rect["height"] / 2.0) + 0.5
     return (x, y)
@@ -77,8 +63,6 @@ def __gui_drag_drop(sb, x1, y1, x2, y2, timeframe=0.25, uc_lock=False):
     import pyautogui
     pyautogui = get_configured_pyautogui(pyautogui)
     screen_width, screen_height = pyautogui.size()
-    # print("screen_width, screen_height")
-    # print(screen_width, screen_height)
     if x1 < 0 or y1 < 0 or x1 > screen_width or y1 > screen_height:
         raise Exception(
             "PyAutoGUI cannot drag-drop from point (%s, %s)"
@@ -162,25 +146,14 @@ with SB(
     uc=True, test=True, incognito=True, xvfb_metrics="1920,1080"
 ) as sb:
     url = "https://seleniumbase.io/other/drag_and_drop"
-    print(sb.execute_script("return window.innerHeight;"))
     sb.uc_open_with_reconnect(url)
-    print(sb.execute_script("return window.innerHeight;"))
-
-    '''sb.assert_element_not_visible("#div1 img#drag1")
+    sb.assert_element_not_visible("#div1 img#drag1")
     gui_drag_and_drop(sb, "#drag1", "#div1")
     sb.assert_element("#div1 img#drag1")
-    sb.sleep(1)'''
+    sb.sleep(1)
 
-    sb.open("https://www.signwell.com/online-signature/draw/")
-    element = sb.find_element("canvas#canvas_signature")
-    gui_drag_drop_points(sb, 273, 500, 273, 400)
-    gui_drag_drop_points(sb, 473, 600, 473, 500)
-    gui_drag_drop_points(sb, 673, 700, 673, 600)
-    gui_drag_drop_points(sb, 873, 800, 873, 700)
-    sb.sleep(2)
-    sb.fail("log this")
 
-'''# CDP Mode
+# CDP Mode
 with SB(uc=True, test=True, incognito=True) as sb:
     url = "https://seleniumbase.io/other/drag_and_drop"
     sb.activate_cdp_mode(url)
@@ -188,6 +161,7 @@ with SB(uc=True, test=True, incognito=True) as sb:
     sb.cdp.gui_drag_and_drop("#drag1", "#div1")
     sb.assert_element("#div1 img#drag1")
     sb.sleep(1)
+
 
 # CDP Mode connected
 with SB(uc=True, test=True, incognito=True) as sb:
@@ -197,34 +171,22 @@ with SB(uc=True, test=True, incognito=True) as sb:
     sb.assert_element_not_visible("#div1 img#drag1")
     sb.cdp.gui_drag_and_drop("#drag1", "#div1")
     sb.assert_element("#div1 img#drag1")
-    sb.sleep(1)'''
+    sb.sleep(1)
 
 # CDP Mode reconnected with updated code
 with SB(
     uc=True, test=True, incognito=True, xvfb_metrics="1920,1080"
 ) as sb:
     url = "https://seleniumbase.io/other/drag_and_drop"
-    print(sb.execute_script("return window.innerHeight;"))
     sb.activate_cdp_mode(url, xvfb=True)
-    print(sb.execute_script("return window.innerHeight;"))
 
     sb.cdp.open_new_tab(url)
     sb.cdp.switch_to_tab(0)
     sb.cdp.close_active_tab()
     sb.cdp.switch_to_newest_tab()
-    print(sb.execute_script("return window.innerHeight;"))
 
     sb.reconnect()
-    sb.open("https://www.signwell.com/online-signature/draw/")
-    element = sb.find_element("canvas#canvas_signature")
-    gui_drag_drop_points(sb, 273, 500, 273, 400)
-    gui_drag_drop_points(sb, 473, 600, 473, 500)
-    gui_drag_drop_points(sb, 673, 700, 673, 600)
-    gui_drag_drop_points(sb, 873, 800, 873, 700)
-    sb.sleep(2)
-    sb.fail("log this")
-    '''print(sb.execute_script("return window.innerHeight;"))
     sb.assert_element_not_visible("#div1 img#drag1")
     gui_drag_and_drop(sb, "#drag1", "#div1")
     sb.assert_element("#div1 img#drag1")
-    sb.sleep(1)'''
+    sb.sleep(1)
