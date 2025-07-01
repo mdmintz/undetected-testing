@@ -84,6 +84,9 @@ jobs:
       run: |
         echo "def test_0(sb): pass" > verify_sb.py
         pytest verify_sb.py
+    - name: Run python raw_drag_and_drop.py --debug
+      run: |
+        python raw_drag_and_drop.py --debug
     - name: Run python raw_indeed.py --debug
       run: |
         python raw_indeed.py --debug
