@@ -82,3 +82,6 @@ jobs:
     - name: Run python raw_nike.py --debug
       run: |
         python raw_nike.py --debug
+    - name: Run python raw_upwork_cdp_mode.py --debug
+      run: |
+        python raw_upwork_cdp_mode.py --debug
