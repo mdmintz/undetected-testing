@@ -85,3 +85,6 @@ jobs:
     - name: Run python raw_res_nike.py
       run: |
         python raw_res_nike.py
+    - name: Run python raw_antibot_login.py
+      run: |
+        python raw_antibot_login.py
