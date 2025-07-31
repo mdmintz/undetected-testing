@@ -88,12 +88,6 @@ jobs:
     - name: Run python raw_antibot_login.py
       run: |
         python raw_antibot_login.py
-    - name: Run python raw_hyatt.py
-      run: |
-        python raw_hyatt.py
     - name: Run python raw_southwest.py
       run: |
         python raw_southwest.py
-    - name: Run python raw_bestwestern.py
-      run: |
-        python raw_bestwestern.py

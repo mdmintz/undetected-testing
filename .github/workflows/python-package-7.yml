@@ -1,0 +1,68 @@
+name: CI build 7 - (macOS)
+on:
+  schedule:
+    - cron: "34 * * * *"
+  push:
+    branches: [ master ]
+  pull_request:
+    branches:
+  workflow_dispatch:
+    branches:
+
+jobs:
+  build:
+
+    env:
+      PY_COLORS: "1"
+    strategy:
+      fail-fast: false
+      max-parallel: 1
+      matrix:
+        os: [macos-latest]
+        python-version: ["3.12"]
+
+    runs-on: ${{ matrix.os }}
+    steps:
+    - uses: actions/checkout@v4
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v5
+      with:
+        python-version: ${{ matrix.python-version }}
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install --upgrade pip
+        pip install --upgrade wheel
+        pip install -r requirements.txt
+        pip install --upgrade pyautogui
+    - name: Lint with flake8
+      run: |
+        pip install flake8
+        # Stop the build if there are flake8 issues
+        flake8 . --count --show-source --statistics --exclude=temp
+    - name: Check the console scripts interface (methods)
+      run: |
+        seleniumbase methods
+        sbase methods
+    - name: Check the console scripts interface
+      run: |
+        seleniumbase
+        sbase
+    - name: Install chromedriver and edgedriver
+      run: |
+        seleniumbase install chromedriver
+        seleniumbase install edgedriver
+    - name: Make sure pytest is working
+      run: |
+        echo "def test_1(): pass" > nothing.py
+        pytest nothing.py
+    - name: Get CPU count
+      run: |
+        echo "import os; print(os.cpu_count())" > get_cpu_count.py
+        python get_cpu_count.py
+    - name: Run python raw_hyatt.py
+      run: |
+        python raw_hyatt.py
+    - name: Run python raw_bestwestern.py
+      run: |
+        python raw_bestwestern.py
