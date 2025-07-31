@@ -48,10 +48,10 @@ jobs:
       run: |
         seleniumbase
         sbase
-    - name: Install chromedriver and edgedriver
+    - name: Install chromedriver and uc_driver
       run: |
         seleniumbase install chromedriver
-        seleniumbase install edgedriver
+        seleniumbase install uc_driver
     - name: Make sure pytest is working
       run: |
         echo "def test_1(): pass" > nothing.py
