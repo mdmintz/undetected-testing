@@ -63,6 +63,6 @@ jobs:
     - name: Run python raw_hyatt.py
       run: |
         python raw_hyatt.py
-    - name: Run python raw_bestwestern.py
+    - name: Run python raw_albertsons.py
       run: |
-        python raw_bestwestern.py
+        python raw_albertsons.py
