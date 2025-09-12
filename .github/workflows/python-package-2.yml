@@ -1,7 +1,7 @@
 name: CI build 2 - (macOS)
 on:
   schedule:
-    - cron: "14 * * * *"
+    - cron: "14 */2 * * *"
   push:
     branches: [ master ]
   pull_request:
@@ -19,7 +19,7 @@ jobs:
       max-parallel: 1
       matrix:
         os: [macos-latest]
-        python-version: ["3.12"]
+        python-version: ["3.13"]
 
     runs-on: ${{ matrix.os }}
     steps:
@@ -48,10 +48,10 @@ jobs:
       run: |
         seleniumbase
         sbase
-    - name: Install chromedriver and edgedriver
+    - name: Install chromedriver and uc_driver
       run: |
         seleniumbase install chromedriver
-        seleniumbase install edgedriver
+        seleniumbase install uc_driver
     - name: Make sure pytest is working
       run: |
         echo "def test_1(): pass" > nothing.py
