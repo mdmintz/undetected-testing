@@ -1,7 +1,7 @@
 name: CI build 6 - (Ubuntu)
 on:
   schedule:
-    - cron: "17 * * * *"
+    - cron: "17 */2 * * *"
   push:
     branches: [ master ]
   pull_request:

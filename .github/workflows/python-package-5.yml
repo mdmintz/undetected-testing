@@ -1,7 +1,7 @@
 name: CI build 5 - (Ubuntu)
 on:
   schedule:
-    - cron: "38 * * * *"
+    - cron: "38 */2 * * *"
   push:
     branches: [ master ]
   pull_request:
@@ -19,7 +19,7 @@ jobs:
       max-parallel: 1
       matrix:
         os: [ubuntu-latest]
-        python-version: ["3.12"]
+        python-version: ["3.13"]
 
     runs-on: ${{ matrix.os }}
     steps:
