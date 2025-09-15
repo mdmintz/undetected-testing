@@ -60,9 +60,12 @@ jobs:
       run: |
         echo "import os; print(os.cpu_count())" > get_cpu_count.py
         python get_cpu_count.py
-    - name: Run python raw_hyatt.py
+    - name: Run python raw_walmart.py --debug
       run: |
-        python raw_hyatt.py
+        python raw_walmart.py --debug
+    #- name: Run python raw_hyatt.py
+    #  run: |
+    #    python raw_hyatt.py
     #- name: Run python raw_albertsons.py
     #  run: |
     #    python raw_albertsons.py
