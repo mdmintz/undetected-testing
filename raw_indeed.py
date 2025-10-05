@@ -9,7 +9,7 @@ with SB(
     sb.uc_gui_click_captcha()
     sb.sleep(2)
     company = "NASA Jet Propulsion Laboratory"
-    sb.press_keys('input[data-testid="company-search-box"]', company)
+    sb.press_keys("input#company-search", company)
     sb.click('button[type="submit"]')
     sb.click('a:contains("%s")' % company)
     sb.sleep(3)
