@@ -78,3 +78,12 @@ jobs:
     - name: Run python raw_turnstile_cdp_mode.py
       run: |
         python raw_turnstile_cdp_mode.py --debug
+    - name: Run python raw_walmart.py --debug
+      run: |
+        python raw_walmart.py --debug
+    - name: Upload screenshots
+      uses: actions/upload-artifact@v4
+      with:
+        name: seleniumbase-screenshots
+        path: |
+          ./latest_logs/
