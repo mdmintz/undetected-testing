@@ -97,6 +97,8 @@ jobs:
       run: |
         python raw_ipify.py
     - name: Run python raw_ipify_gha.py
+      env:
+        proxy_1: ${{ secrets.PROXY_1 }}
       run: |
         python raw_ipify_gha.py
     - name: Upload screenshots
