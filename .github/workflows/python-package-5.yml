@@ -46,6 +46,7 @@ jobs:
         pip install --upgrade wheel
         pip install -r requirements.txt
         pip install --upgrade pyautogui
+        pip install seleniumbase==4.44.3
     - name: Install extra dependencies
       if: runner.os == 'Linux'
       run: |
