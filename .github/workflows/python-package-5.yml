@@ -92,10 +92,13 @@ jobs:
       env:
         proxy_1: ${{ secrets.PROXY_1 }}
       run: |
-        python raw_chatgpt_gha.py --debug
-    - name: Run python raw_walmart.py --debug
+        python raw_chatgpt_gha.py
+    - name: Run python raw_ipify.py
       run: |
-        python raw_walmart.py --debug --proxy=${{ secrets.PROXY_1 }}
+        python raw_ipify.py
+    - name: Run python raw_ipify.py --proxy=${{ secrets.PROXY_1 }}
+      run: |
+        python raw_ipify.py --proxy=${{ secrets.PROXY_1 }}
     - name: Upload screenshots
       uses: actions/upload-artifact@v4
       with:
