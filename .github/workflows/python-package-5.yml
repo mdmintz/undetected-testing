@@ -96,9 +96,9 @@ jobs:
     - name: Run python raw_ipify.py
       run: |
         python raw_ipify.py
-    - name: Run python raw_ipify.py --proxy=${{ secrets.PROXY_1 }}
+    - name: Run python raw_ipify_gha.py
       run: |
-        python raw_ipify.py --proxy=${{ secrets.PROXY_1 }}
+        python raw_ipify_gha.py
     - name: Upload screenshots
       uses: actions/upload-artifact@v4
       with:
