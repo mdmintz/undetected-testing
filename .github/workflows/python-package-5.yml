@@ -88,11 +88,11 @@ jobs:
     - name: Run python raw_chatgpt.py --debug
       run: |
         python raw_chatgpt.py --debug
-    - name: Run python raw_chatgpt_gha.py --debug
-      env:
-        proxy_1: ${{ secrets.PROXY_1 }}
-      run: |
-        python raw_chatgpt_gha.py
+    #- name: Run python raw_chatgpt_gha.py --debug
+    #  env:
+    #    proxy_1: ${{ secrets.PROXY_1 }}
+    #  run: |
+    #    python raw_chatgpt_gha.py
     - name: Run python raw_ipify.py
       run: |
         python raw_ipify.py
