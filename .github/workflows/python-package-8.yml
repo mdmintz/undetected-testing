@@ -84,9 +84,6 @@ jobs:
     - name: Run python playwright/raw_copilot_sync.py
       run: |
         python playwright/raw_copilot_sync.py
-    - name: Run python playwright/raw_nordstrom_sync.py
-      run: |
-        python playwright/raw_nordstrom_sync.py
     - name: Run python playwright/raw_nike_sync.py
       run: |
         python playwright/raw_nike_sync.py
