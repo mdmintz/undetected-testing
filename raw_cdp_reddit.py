@@ -1,10 +1,14 @@
 """Reddit Search / Bypasses reCAPTCHA."""
 from seleniumbase import sb_cdp
+from seleniumbase import shared_utils
 
 search = "reddit+scraper"
 url = f"https://www.reddit.com/r/webscraping/search/?q={search}"
 try:
-    sb = sb_cdp.Chrome(url, binary_location="/bin/chromium")
+    if shared_utils.is_linux():
+        sb = sb_cdp.Chrome(url)
+    else:
+        sb = sb_cdp.Chrome(url, use_chromium=True)
     sb.solve_captcha()  # Might not be needed
     post_title = '[data-testid="post-title"]'
     sb.wait_for_element(post_title)
