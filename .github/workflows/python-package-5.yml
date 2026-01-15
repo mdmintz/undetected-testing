@@ -101,6 +101,9 @@ jobs:
     #    proxy_1: ${{ secrets.PROXY_1 }}
     #  run: |
     #    python raw_ipify_gha.py
+    - name: Run python raw_cdp_reddit.py
+      run: |
+        python raw_cdp_reddit.py
     - name: Upload screenshots
       uses: actions/upload-artifact@v6
       with:
