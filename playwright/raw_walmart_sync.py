@@ -22,7 +22,7 @@ try:
         print('*** Walmart Search for "%s":' % search)
         print('    (Results must contain "%s".)' % required_text)
         unique_item = []
-        items = page.locator('div[data-testid="list-view"]')
+        items = page.locator('div[data-test-id="gpt-main"]')
         for i in range(items.count()):
             item = items.nth(i)
             if required_text in item.inner_text():
