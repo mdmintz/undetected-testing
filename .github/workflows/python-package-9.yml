@@ -1,7 +1,7 @@
-name: CI build 8 - (Ubuntu)
+name: CI build 9 - (Ubuntu)
 on:
   schedule:
-    - cron: "42 */4 * * *"
+    - cron: "48 */4 * * *"
   push:
     branches: [ master ]
   pull_request:
@@ -46,7 +46,6 @@ jobs:
         pip install --upgrade wheel
         pip install -r requirements.txt
         pip install --upgrade pyautogui
-        pip install --upgrade playwright
     - name: Install extra dependencies
       if: runner.os == 'Linux'
       run: |
@@ -81,21 +80,13 @@ jobs:
       run: |
         python -c "from seleniumbase.core import detect_b_ver; print(detect_b_ver.get_binary_location('google-chrome'))"
         python -c "from seleniumbase import undetected; print(undetected.find_chrome_executable())"
-    - name: Run python playwright/raw_copilot_sync.py
+    - name: Make sure pytest with sb is working
       run: |
-        python playwright/raw_copilot_sync.py
-    - name: Run python playwright/raw_nike_sync.py
+        echo "def test_0(sb): pass" > verify_sb.py
+        pytest verify_sb.py
+    - name: Run python raw_gas_records.py --debug
       run: |
-        python playwright/raw_nike_sync.py
-    - name: Run python playwright/raw_seatgeek_sync.py
-      run: |
-        python playwright/raw_seatgeek_sync.py
-    - name: Run python playwright/raw_walmart_sync.py
-      run: |
-        python playwright/raw_walmart_sync.py
-    - name: Run python raw_gas_info_sync.py --debug
-      run: |
-        python playwright/raw_gas_info_sync.py --debug
+        python raw_gas_records.py --debug
     - name: Upload screenshots
       uses: actions/upload-artifact@v6
       with:
