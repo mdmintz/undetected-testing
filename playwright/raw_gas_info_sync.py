@@ -16,10 +16,8 @@ try:
         )
         page.goto(url)
         sb.sleep(0.5)
-        sb.save_screenshot_to_logs()
         sb.solve_captcha()
         page.wait_for_selector("#SearchTerm")
-        sb.save_screenshot_to_logs()
         allow_cookies = 'button:contains("Allow all cookies")'
         sb.click_if_visible(allow_cookies, timeout=2)
         sb.sleep(1)
