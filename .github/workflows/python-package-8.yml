@@ -93,7 +93,7 @@ jobs:
     - name: Run python playwright/raw_walmart_sync.py
       run: |
         python playwright/raw_walmart_sync.py
-    - name: Run python raw_gas_info_sync.py --debug
+    - name: Run python playwright/raw_gas_info_sync.py --debug
       run: |
         python playwright/raw_gas_info_sync.py --debug
     - name: Upload screenshots
