@@ -7,8 +7,7 @@ try:
 
     with sync_playwright() as p:
         browser = p.chromium.connect_over_cdp(endpoint_url)
-        context = browser.contexts[0]
-        page = context.pages[0]
+        page = browser.contexts[0].pages[0]
         page.goto("https://copilot.microsoft.com")
         page.wait_for_selector("textarea#userInput")
         sb.sleep(1)
