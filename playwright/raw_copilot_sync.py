@@ -10,16 +10,17 @@ try:
         page = browser.contexts[0].pages[0]
         page.goto("https://copilot.microsoft.com")
         page.wait_for_selector("textarea#userInput")
-        sb.sleep(1)
+        page.wait_for_timeout(2000)
         query = "Playwright Python connect_over_cdp() sync example"
         page.fill("textarea#userInput", query)
+        page.wait_for_timeout(2000)
         page.click('button[data-testid="submit-button"]')
-        sb.sleep(3)
+        sb.sleep(5.25)
         sb.solve_captcha()
         page.wait_for_selector('button[data-testid*="-thumbs-up"]')
-        sb.sleep(4)
+        page.wait_for_timeout(4000)
         page.click('button[data-testid*="scroll-to-bottom"]')
-        sb.sleep(3)
+        page.wait_for_timeout(3000)
         chat_results = '[data-testid="highlighted-chats"]'
         result = page.locator(chat_results).inner_text()
         print(result.replace("\n\n", " \n"))
