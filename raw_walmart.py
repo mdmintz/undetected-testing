@@ -1,12 +1,12 @@
 from seleniumbase import SB
 
 with SB(uc=True, test=True, ad_block=True) as sb:
-    url = "https://www.walmart.com/"
-    sb.activate_cdp_mode(url)
-    sb.sleep(1.8)
+    sb.activate_cdp_mode()
+    sb.goto("https://www.walmart.com/")
+    sb.sleep(2.2)
     continue_button = 'button:contains("Continue shopping")'
     if sb.is_element_visible(continue_button):
-        sb.cdp.gui_click_element(continue_button)
+        sb.gui_click_element(continue_button)
         sb.sleep(0.6)
     sb.click('input[aria-label="Search"]')
     sb.sleep(1.2)
@@ -15,10 +15,10 @@ with SB(uc=True, test=True, ad_block=True) as sb:
     sb.press_keys('input[aria-label="Search"]', search + "\n")
     sb.sleep(3.8)
     if sb.is_element_visible("#px-captcha"):
-        sb.cdp.gui_click_and_hold("#px-captcha", 7.2)
+        sb.gui_click_and_hold("#px-captcha", 7.2)
         sb.sleep(4.2)
         if sb.is_element_visible("#px-captcha"):
-            sb.cdp.gui_click_and_hold("#px-captcha", 4.2)
+            sb.gui_click_and_hold("#px-captcha", 4.2)
             sb.sleep(3.2)
     sb.remove_elements('[data-testid="skyline-ad"]')
     sb.remove_elements('[data-testid="sba-container"]')
@@ -44,4 +44,5 @@ with SB(uc=True, test=True, ad_block=True) as sb:
                     price_text = price_text.split("current price ")[-1]
                     price_text = price_text.split(" ")[0]
                     print("  (" + price_text + ")")
+                    item.scroll_into_view()
     sb.save_screenshot_to_logs()

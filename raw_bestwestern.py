@@ -1,29 +1,29 @@
 from seleniumbase import SB
 
-with SB(uc=True, test=True, locale="en", ad_block=True) as sb:
-    url = "https://www.bestwestern.com/en_US.html"
-    sb.activate_cdp_mode(url)
-    sb.sleep(2.5)
-    sb.cdp.click_if_visible(".onetrust-close-btn-handler")
+with SB(uc=True, test=True, locale="en", guest=True) as sb:
+    sb.activate_cdp_mode()
+    sb.goto("https://www.bestwestern.com/en_US.html")
+    sb.sleep(3)
+    sb.click_if_visible(".onetrust-close-btn-handler")
     sb.sleep(1)
-    sb.cdp.click("input#destination-input")
+    sb.click("input#destination-input")
     sb.sleep(2)
     location = "Palm Springs, CA, USA"
-    sb.cdp.press_keys("input#destination-input", location)
+    sb.press_keys("input#destination-input", location)
     sb.sleep(1)
-    sb.cdp.click("ul#google-suggestions li")
+    sb.click("ul#google-suggestions li")
     sb.sleep(1)
-    sb.cdp.click("button#btn-modify-stay-update")
+    sb.click("button#btn-modify-stay-update")
     sb.sleep(4)
-    sb.cdp.click("label#available-label")
+    sb.click("label#available-label")
     sb.sleep(2.5)
     print("Best Western Hotels in %s:" % location)
-    summary_details = sb.cdp.get_text("#summary-details-column")
+    summary_details = sb.get_text("#summary-details-column")
     dates = summary_details.split("DESTINATION")[-1]
     dates = dates.split(" CHECK-OUT")[0].strip() + " CHECK-OUT"
     dates = dates.replace("  ", " ")
     print("(Dates: %s)" % dates)
-    flip_cards = sb.cdp.select_all(".flipCard")
+    flip_cards = sb.select_all(".flipCard")
     for i, flip_card in enumerate(flip_cards):
         hotel = flip_card.query_selector(".hotelName")
         price = flip_card.query_selector(".priceSection")
@@ -31,3 +31,4 @@ with SB(uc=True, test=True, locale="en", ad_block=True) as sb:
             print("* %s: %s => %s" % (
                 i + 1, hotel.text.strip(), price.text.strip())
             )
+    sb.save_screenshot_to_logs()

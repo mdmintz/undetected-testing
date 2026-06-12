@@ -1,9 +1,9 @@
 from seleniumbase import SB
 
 with SB(uc=True, test=True, locale_code="en") as sb:
-    url = "https://gitlab.com/users/sign_in"
-    sb.activate_cdp_mode(url)
-    sb.sleep(1)
+    sb.activate_cdp_mode()
+    sb.goto("https://gitlab.com/users/sign_in")
+    sb.sleep(2)
     sb.uc_gui_click_captcha()
     sb.assert_text("Username", '[for="user_login"]', timeout=3)
     sb.assert_element('label[for="user_login"]')
@@ -11,3 +11,4 @@ with SB(uc=True, test=True, locale_code="en") as sb:
     sb.highlight('h1:contains("GitLab")')
     sb.post_message("SeleniumBase wasn't detected", duration=4)
     print("Success! Website did not detect SeleniumBase!")
+    sb.save_screenshot_to_logs()

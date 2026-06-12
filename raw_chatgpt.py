@@ -2,9 +2,9 @@ from contextlib import suppress
 from seleniumbase import SB
 
 with SB(uc=True, test=True, ad_block=True) as sb:
-    url = "https://chatgpt.com/"
-    sb.activate_cdp_mode(url)
-    sb.sleep(1)
+    sb.activate_cdp_mode()
+    sb.open("https://chatgpt.com/")
+    sb.sleep(3)
     sb.click_if_visible('button[aria-label="Close dialog"]')
     sb.click_if_visible('button[data-testid="close-button"]')
     query = "Compare Playwright to SeleniumBase in under 178 words"
@@ -22,3 +22,4 @@ with SB(uc=True, test=True, ad_block=True) as sb:
     soup = soup.replace("\n\n\n", "\n\n")
     print("*** Response from ChatGPT: ***\n%s" % soup)
     sb.sleep(3)
+    sb.save_screenshot_to_logs()
