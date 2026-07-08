@@ -14,6 +14,9 @@ try:
     sb.sleep(2)
     sb.solve_captcha()
     sb.sleep(1)
+    for i in range(15):
+        sb.scroll_down(15)
+        sb.sleep(0.15)
     sb.click_if_visible('button[aria-label="Ok"]')
     soup = sb.get_beautiful_soup()
     items = soup.select("div.v2-listing-card__info")
