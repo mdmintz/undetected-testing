@@ -62,6 +62,9 @@ jobs:
     - name: Install chromedriver
       run: |
         seleniumbase install chromedriver
+    - name: Install Chromium browser
+      run: |
+        seleniumbase install chromium
     - name: Make sure pytest is working
       run: |
         echo "def test_1(): pass" > nothing.py
@@ -85,9 +88,9 @@ jobs:
     - name: Run python raw_res_nike.py
       run: |
         python raw_res_nike.py
-    - name: Run python raw_cdp_etsy.py
+    - name: Run python raw_cdp_etsy.py --chromium
       run: |
-        python raw_cdp_etsy.py
+        python raw_cdp_etsy.py --chromium
     - name: Run python raw_antibot_login.py
       run: |
         python raw_antibot_login.py
