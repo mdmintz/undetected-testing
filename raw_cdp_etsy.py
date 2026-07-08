@@ -28,5 +28,9 @@ try:
                 print(title)
                 print(price.strip().split("\n")[0])
     print(f"*** {num} total items found!")
+    folder = "downloaded_files"
+    file_name = "etsy_results.html"
+    sb.save_as_html(file_name, folder)
+    print('"./%s/%s" was saved!' % (folder, file_name))
 except Exception as e:
     print(e)

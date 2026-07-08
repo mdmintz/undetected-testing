@@ -1,4 +1,4 @@
-name: CI build 7 - (macOS)
+name: CI build 7 - (Ubuntu ARM64)
 on:
   schedule:
     - cron: "34 */4 * * *"
@@ -18,7 +18,7 @@ jobs:
       fail-fast: false
       max-parallel: 1
       matrix:
-        os: [macos-latest]
+        os: [ubuntu-24.04-arm]
         python-version: ["3.13"]
 
     runs-on: ${{ matrix.os }}
@@ -30,11 +30,11 @@ jobs:
         python-version: ${{ matrix.python-version }}
     - name: Install dependencies
       run: |
-        python -m pip install --upgrade pip
-        pip install --upgrade pip
-        pip install --upgrade wheel
+        python -m pip install --upgrade pip wheel setuptools pipdeptree
         pip install -r requirements.txt
-        pip install --upgrade pyautogui
+    - name: Install SeleniumBase
+      run: |
+        pip install .
     - name: Lint with flake8
       run: |
         pip install flake8
@@ -48,24 +48,28 @@ jobs:
       run: |
         seleniumbase
         sbase
-    - name: Install chromedriver and uc_driver
+    - name: Install chromium
       run: |
-        seleniumbase install chromedriver
-        seleniumbase install uc_driver
-    - name: Make sure pytest is working
+        sudo apt-get install chromium
+    - name: List dependencies
       run: |
-        echo "def test_1(): pass" > nothing.py
-        pytest nothing.py
+        pipdeptree
     - name: Get CPU count
       run: |
         echo "import os; print(os.cpu_count())" > get_cpu_count.py
         python get_cpu_count.py
-    - name: Run python raw_walmart.py --debug
+    - name: Get platform info
       run: |
-        python raw_walmart.py --debug
-    #- name: Run python raw_hyatt.py
-    #  run: |
-    #    python raw_hyatt.py
-    #- name: Run python raw_albertsons.py
-    #  run: |
-    #    python raw_albertsons.py
+        python platform_check.py
+    - name: Run python raw_mfa_login.py
+      run: |
+        python raw_mfa_login.py
+    - name: Run python raw_cdp_etsy.py --debug
+      run: |
+        python raw_cdp_etsy.py --debug
+    - name: Upload artifacts
+      uses: actions/upload-artifact@v6
+      with:
+        name: seleniumbase-artifacts
+        path: |
+          ./downloaded_files/
