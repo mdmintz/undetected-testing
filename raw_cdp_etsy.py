@@ -28,5 +28,5 @@ try:
                 print(title)
                 print(price.strip().split("\n")[0])
     print(f"*** {num} total items found!")
-except Exception:
-    print("Something went wrong!")
+except Exception as e:
+    print(e)
