@@ -1,0 +1,82 @@
+name: CI build 7 - (Ubuntu ARM64)
+on:
+  schedule:
+    - cron: "38 */4 * * *"
+  push:
+    branches: [ master ]
+  pull_request:
+    branches:
+  workflow_dispatch:
+    branches:
+
+jobs:
+  build:
+
+    env:
+      PY_COLORS: "1"
+    strategy:
+      fail-fast: false
+      max-parallel: 1
+      matrix:
+        os: [ubuntu-24.04-arm]
+        python-version: ["3.13"]
+
+    runs-on: ${{ matrix.os }}
+    steps:
+    - uses: actions/checkout@v6
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v6
+      with:
+        python-version: ${{ matrix.python-version }}
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip wheel setuptools pipdeptree
+        # This installs SeleniumBase
+        pip install -r requirements.txt
+    - name: Lint with flake8
+      run: |
+        pip install flake8
+        # Stop the build if there are flake8 issues
+        flake8 . --count --show-source --statistics --exclude=temp
+    - name: Check the console scripts interface (methods)
+      run: |
+        seleniumbase methods
+        sbase methods
+    - name: Check the console scripts interface
+      run: |
+        seleniumbase
+        sbase
+    - name: Install chromium
+      run: |
+        sudo apt-get install chromium
+    - name: List dependencies
+      run: |
+        pipdeptree
+    - name: Get CPU count
+      run: |
+        echo "import os; print(os.cpu_count())" > get_cpu_count.py
+        python get_cpu_count.py
+    - name: Get platform info
+      run: |
+        python platform_check.py
+    - name: Run python raw_mfa_login.py
+      run: |
+        python raw_mfa_login.py
+    - name: Run python raw_wsform.py --debug
+      run: |
+        python raw_wsform.py --debug
+    - name: Upload logs for WSForm
+      uses: actions/upload-artifact@v6
+      with:
+        name: seleniumbase-logs-for-wsform
+        path: |
+          ./latest_logs/
+    - name: Run python raw_serienstream.py --debug
+      run: |
+        python raw_serienstream.py --debug
+    - name: Upload logs for serienstream
+      uses: actions/upload-artifact@v6
+      with:
+        name: seleniumbase-logs-for-serienstream
+        path: |
+          ./latest_logs/

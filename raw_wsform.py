@@ -1,9 +1,8 @@
-from seleniumbase import SB
+from seleniumbase import sb_cdp
 
-with SB(uc=True, test=True, locale="en", incognito=True) as sb:
-    sb.activate_cdp_mode()
-    sb.goto("https://wsform.com/demo/")
-    sb.sleep(2.5)
-    sb.solve_captcha()  # PyAutoGUI mouse click
-    sb.sleep(2.5)
-    sb.save_screenshot_to_logs()
+sb = sb_cdp.Chrome(locale="en", incognito=True)
+sb.goto("https://wsform.com/demo/")
+sb.sleep(3)
+sb.solve_captcha()
+sb.sleep(3)
+sb.save_screenshot_to_logs()
