@@ -102,6 +102,15 @@ jobs:
         name: seleniumbase-logs-for-wsform
         path: |
           ./latest_logs/
+    - name: Run python raw_serienstream.py --debug
+      run: |
+        python raw_serienstream.py --debug
+    - name: Upload logs for serienstream
+      uses: actions/upload-artifact@v6
+      with:
+        name: seleniumbase-logs-for-serienstream
+        path: |
+          ./latest_logs/
     - name: Run python raw_tiktok.py --debug
       run: |
         python raw_tiktok.py --debug
