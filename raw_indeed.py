@@ -1,6 +1,6 @@
 from seleniumbase import SB
 
-with SB(uc=True, test=True, use_chromium=True) as sb:
+with SB(uc=True, test=True, guest=True) as sb:
     sb.activate_cdp_mode()
     sb.goto("https://www.indeed.com/companies/search")
     sb.sleep(3)
@@ -11,7 +11,13 @@ with SB(uc=True, test=True, use_chromium=True) as sb:
         sb.solve_captcha()
         sb.sleep(1)
     company = "NASA Jet Propulsion Laboratory"
-    sb.click(search_box)
+    try:
+        sb.click(search_box)
+    except Exception:
+        sb.save_screenshot_to_logs()
+        sb.save_page_source_to_logs()
+        sb.save_as_pdf_to_logs()
+        raise
     sb.sleep(0.1)
     sb.press_keys(search_box, company)
     sb.click('button[type="submit"]')
@@ -33,3 +39,5 @@ with SB(uc=True, test=True, use_chromium=True) as sb:
     soup = sb.get_beautiful_soup(info.get_html()).get_text("\n").strip()
     print("*** %s: ***\n%s" % (company, soup.replace("\n:", ":")))
     sb.save_screenshot_to_logs()
+    sb.save_page_source_to_logs()
+    sb.save_as_pdf_to_logs()
