@@ -84,16 +84,22 @@ jobs:
       run: |
         echo "def test_0(sb): pass" > verify_sb.py
         pytest verify_sb.py
-    - name: Run python raw_drag_and_drop.py --debug
+    - name: Run python raw_gitlab.py --debug
       run: |
-        python raw_drag_and_drop.py --debug
-    - name: Run python raw_indeed.py --debug
-      run: |
-        python raw_indeed.py --debug
-    - name: Upload logs
+        python raw_gitlab.py --debug
+    - name: Upload logs for GitLab
       uses: actions/upload-artifact@v6
       with:
-        name: seleniumbase-logs
+        name: seleniumbase-logs-for-gitlab
+        path: |
+          ./latest_logs/
+    - name: Run python raw_wsform.py --debug
+      run: |
+        python raw_wsform.py --debug
+    - name: Upload logs for WSForm
+      uses: actions/upload-artifact@v6
+      with:
+        name: seleniumbase-logs-for-wsform
         path: |
           ./latest_logs/
     - name: Run python raw_tiktok.py --debug
