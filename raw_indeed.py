@@ -5,11 +5,14 @@ with SB(uc=True, test=True, guest=True) as sb:
     sb.goto("https://www.indeed.com/companies/search")
     sb.sleep(3)
     sb.solve_captcha()
-    sb.sleep(1)
+    sb.sleep(2)
     search_box = "input#company-search"
     if not sb.is_element_present(search_box):
         sb.solve_captcha()
-        sb.sleep(1)
+        sb.sleep(3)
+    if not sb.is_element_present(search_box):
+        sb.uc_gui_click_captcha()
+        sb.sleep(3)
     company = "NASA Jet Propulsion Laboratory"
     try:
         sb.click(search_box)
