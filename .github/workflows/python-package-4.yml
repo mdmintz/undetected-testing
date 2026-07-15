@@ -90,6 +90,12 @@ jobs:
     - name: Run python raw_indeed.py --debug
       run: |
         python raw_indeed.py --debug
+    - name: Upload logs
+      uses: actions/upload-artifact@v6
+      with:
+        name: seleniumbase-logs
+        path: |
+          ./latest_logs/
     - name: Run python raw_tiktok.py --debug
       run: |
         python raw_tiktok.py --debug
