@@ -1,6 +1,6 @@
 from seleniumbase import SB
 
-with SB(uc=True, test=True) as sb:
+with SB(uc=True, test=True, use_chromium=True) as sb:
     sb.activate_cdp_mode()
     sb.goto("https://www.indeed.com/companies/search")
     sb.sleep(3)
