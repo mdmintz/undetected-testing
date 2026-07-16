@@ -28,37 +28,16 @@ jobs:
       uses: actions/setup-python@v6
       with:
         python-version: ${{ matrix.python-version }}
-    - name: Set Locale
-      if: runner.os == 'Linux'
-      run: |
-        sudo apt-get install tzdata locales -y && sudo locale-gen en_US.UTF-8
-        sudo localectl set-locale LANG="en_US.UTF-8"
-        export LANG="en_US.UTF-8"
-        sudo update-locale
-        locale -a
-        locale
-        locale -c -k LC_NUMERIC
-        localectl status
     - name: Install dependencies
       run: |
-        python -m pip install --upgrade pip
-        pip install --upgrade pip
-        pip install --upgrade wheel
+        python -m pip install --upgrade pip wheel setuptools pipdeptree
+        # This installs SeleniumBase
         pip install -r requirements.txt
-        pip install --upgrade pyautogui
-    - name: Install extra dependencies
-      if: runner.os == 'Linux'
-      run: |
-        pip install --upgrade python-xlib
     - name: Lint with flake8
       run: |
         pip install flake8
         # Stop the build if there are flake8 issues
         flake8 . --count --show-source --statistics --exclude=temp
-    - name: Install Chrome
-      if: matrix.os == 'ubuntu-latest'
-      run: |
-        sudo apt install google-chrome-stable
     - name: Check the console scripts interface
       run: |
         seleniumbase
