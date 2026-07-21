@@ -75,6 +75,9 @@ jobs:
     #    proxy_1: ${{ secrets.PROXY_1 }}
     #  run: |
     #    python raw_chatgpt_gha.py
+    - name: Run python raw_handle_alerts.py
+      run: |
+        python raw_handle_alerts.py
     - name: Run python raw_ipify.py
       run: |
         python raw_ipify.py
