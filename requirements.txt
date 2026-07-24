@@ -1,4 +1,4 @@
-seleniumbase==4.51.4
+seleniumbase
 pyvirtualdisplay
 pdbp
 tabcompleter
