@@ -8,7 +8,7 @@ try:
     required_text = "keychain"
     sb.solve_captcha()
     sb.sleep(1)
-    sb.type('input[data-id="search-query"]', search)
+    sb.press_keys('input[data-id="search-query"]', search)
     sb.sleep(1)
     sb.click('button[aria-label="Search"]')
     sb.sleep(2)
@@ -37,7 +37,11 @@ try:
     print(f"*** {num} total items found!")
     folder = "downloaded_files"
     file_name = "etsy_results.html"
+    file_name_2 = "etsy_results.png"
+    file_name_3 = "etsy_results.pdf"
     sb.save_as_html(file_name, folder)
+    sb.save_screenshot(file_name_2, folder)
+    sb.save_as_pdf(file_name_3, folder)
     print('"./%s/%s" was saved!' % (folder, file_name))
 except Exception as e:
     print(e)
