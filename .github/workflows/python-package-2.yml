@@ -76,9 +76,9 @@ jobs:
     - name: Run python raw_turnstile_cdp_mode.py
       run: |
         python raw_turnstile_cdp_mode.py --debug
-    #- name: Run python raw_walmart.py --debug
-    #  run: |
-    #    python raw_walmart.py --debug
+    - name: Run python raw_walmart.py --debug
+      run: |
+        python raw_walmart.py --debug
     - name: Run python raw_cdp_etsy.py --debug
       run: |
         python raw_cdp_etsy.py --debug

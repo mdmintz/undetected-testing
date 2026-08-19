@@ -2,13 +2,13 @@ from playwright.sync_api import sync_playwright
 from seleniumbase import sb_cdp
 
 sb = sb_cdp.Chrome(locale="en", ad_block=True)
+sb.goto("https://seatgeek.com/")
 endpoint_url = sb.get_endpoint_url()
 
 try:
     with sync_playwright() as p:
         browser = p.chromium.connect_over_cdp(endpoint_url)
         page = browser.contexts[0].pages[0]
-        page.goto("https://seatgeek.com/")
         input_field = 'input[name="search"]'
         page.wait_for_selector(input_field)
         sb.sleep(1.6)

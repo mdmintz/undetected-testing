@@ -14,12 +14,6 @@ with SB(uc=True, test=True, ad_block=True) as sb:
     required_text = "Catan"
     sb.press_keys('input[aria-label="Search"]', search + "\n")
     sb.sleep(3.8)
-    if sb.is_element_visible("#px-captcha"):
-        sb.gui_click_and_hold("#px-captcha", 7.2)
-        sb.sleep(4.2)
-        if sb.is_element_visible("#px-captcha"):
-            sb.gui_click_and_hold("#px-captcha", 4.2)
-            sb.sleep(3.2)
     sb.remove_elements('[data-testid="skyline-ad"]')
     sb.remove_elements('[data-testid="sba-container"]')
     print('*** Walmart Search for "%s":' % search)
@@ -28,21 +22,21 @@ with SB(uc=True, test=True, ad_block=True) as sb:
     sb.click_if_visible('[data-automation-id="sb-btn-close-mark"]')
     items = sb.find_elements('[data-item-id]')
     for item in items:
-        if required_text in item.text:
-            description = item.querySelector(
+        if required_text.lower() in item.text.lower():
+            description = item.query_selector(
                 '[data-automation-id="product-title"]'
             )
             if description and description.text not in unique_item_text:
                 unique_item_text.append(description.text)
                 print("* " + description.text)
-                price = item.querySelector(
+                price = item.query_selector(
                     '[data-automation-id="product-price"]'
                 )
                 if price:
-                    price_text = price.text
-                    price_text = price_text.split("current price Now ")[-1]
-                    price_text = price_text.split("current price ")[-1]
-                    price_text = price_text.split(" ")[0]
+                    price_text = price.text.strip()
+                    price_text = price_text.split(" current price ")[-1]
                     print("  (" + price_text + ")")
-                    item.scroll_into_view()
+                else:
+                    breakpoint()
+                item.scroll_into_view()
     sb.save_screenshot_to_logs()
