@@ -49,7 +49,7 @@ try:
                     )
                     if price.count() > 0:
                         price_text = price.inner_text().strip()
-                        price_text = price_text.split(" current price ")[-1]
+                        price_text = price_text.split("current price ")[-1]
                         print("  (" + price_text + ")")
 except Exception as e:
     print(e)

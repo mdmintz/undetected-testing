@@ -34,9 +34,7 @@ with SB(uc=True, test=True, ad_block=True) as sb:
                 )
                 if price:
                     price_text = price.text.strip()
-                    price_text = price_text.split(" current price ")[-1]
+                    price_text = price_text.split("current price ")[-1]
                     print("  (" + price_text + ")")
-                else:
-                    breakpoint()
                 item.scroll_into_view()
     sb.save_screenshot_to_logs()
