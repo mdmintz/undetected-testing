@@ -60,15 +60,12 @@ jobs:
       run: |
         python -c "from seleniumbase.core import detect_b_ver; print(detect_b_ver.get_binary_location('google-chrome'))"
         python -c "from seleniumbase import undetected; print(undetected.find_chrome_executable())"
-    - name: Run python playwright/raw_copilot_sync.py
-      run: |
-        python playwright/raw_copilot_sync.py
     - name: Run python playwright/raw_nike_sync.py
       run: |
         python playwright/raw_nike_sync.py
-    - name: Run python playwright/raw_seatgeek_sync.py
-      run: |
-        python playwright/raw_seatgeek_sync.py
+    #- name: Run python playwright/raw_seatgeek_sync.py
+    #  run: |
+    #    python playwright/raw_seatgeek_sync.py
     - name: Run python playwright/raw_walmart_sync.py
       run: |
         python playwright/raw_walmart_sync.py
