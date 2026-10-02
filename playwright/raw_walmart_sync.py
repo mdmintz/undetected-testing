@@ -45,11 +45,13 @@ try:
                     unique_item.append(description.inner_text())
                     print("* " + description.inner_text())
                     price = item.locator(
-                        '[data-automation-id="product-price"]'
+                        '[data-testid="unified-global-product-price"]'
                     )
                     if price.count() > 0:
                         price_text = price.inner_text().strip()
-                        price_text = price_text.split("current price ")[-1]
-                        print("  (" + price_text + ")")
+                        if price_text:
+                            price_text = price_text.split("current price ")[-1]
+                            price_text = price_text.replace("\n", " ")
+                            print("  (" + price_text + ")")
 except Exception as e:
     print(e)
