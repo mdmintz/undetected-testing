@@ -4,7 +4,7 @@ Testing [SeleniumBase](https://github.com/seleniumbase/SeleniumBase) stealth for
 
 Eg. Scraping Walmart from GitHub Actions:
 
-https://github.com/mdmintz/undetected-testing/actions/runs/27472829120/job/81206719846#step:17:12
+https://github.com/mdmintz/undetected-testing/actions/runs/37067624944/job/111039269730#step:12:13
 
 <img width="650" alt="Image" src="https://github.com/user-attachments/assets/86545cd2-a00e-42bb-800a-53da59ca1bd0" />
 
