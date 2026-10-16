@@ -1,17 +1,17 @@
 from seleniumbase import sb_cdp
 
 try:
-    sb = sb_cdp.Chrome(ad_block=True)
+    sb = sb_cdp.Chrome(ad_block=True, incognito=True)
     sb.goto("https://www.etsy.com/")
-    sb.sleep(2)
+    sb.sleep(2.5)
+    sb.solve_captcha()
+    sb.sleep(1.5)
     search = "FIFA Keychains"
     required_text = "keychain"
-    sb.solve_captcha()
-    sb.sleep(1)
     sb.press_keys('input[data-id="search-query"]', search)
     sb.sleep(1)
     sb.click('button[aria-label="Search"]')
-    sb.sleep(2)
+    sb.sleep(2.5)
     sb.solve_captcha()
     sb.sleep(1)
     for i in range(15):
