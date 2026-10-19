@@ -1,7 +1,7 @@
 from seleniumbase import sb_cdp
 
 try:
-    sb = sb_cdp.Chrome(ad_block=True, incognito=True)
+    sb = sb_cdp.Chrome(incognito=True)
     sb.goto("https://www.etsy.com/")
     sb.sleep(2.5)
     sb.solve_captcha()
@@ -21,6 +21,8 @@ try:
     soup = sb.get_beautiful_soup()
     items = soup.select("div.v2-listing-card__info")
     num = 0
+    print('*** Etsy search for "%s":' % search)
+    print('    (Results must contain "%s")' % required_text)
     for item in items:
         title_element = item.select_one("h3.v2-listing-card__title")
         price_element = item.select_one("div.n-listing-card__price")

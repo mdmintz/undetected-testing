@@ -83,9 +83,6 @@ jobs:
     - name: Run python raw_turnstile.py
       run: |
         python raw_turnstile.py --debug
-    - name: Run python raw_upwork.py
-      run: |
-        python raw_upwork.py --debug
     - name: Upload screenshots
       uses: actions/upload-artifact@v6
       with:

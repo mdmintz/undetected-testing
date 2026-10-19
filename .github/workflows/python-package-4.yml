@@ -75,6 +75,9 @@ jobs:
     - name: Run python raw_tiktok.py --debug
       run: |
         python raw_tiktok.py --debug
+    - name: Run python raw_cdp_mode.py --debug
+      run: |
+        python raw_cdp_mode.py --debug
     - name: Upload screenshots
       uses: actions/upload-artifact@v6
       with:
