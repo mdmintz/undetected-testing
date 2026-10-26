@@ -66,6 +66,9 @@ jobs:
     - name: Run python raw_gas_records.py --debug
       run: |
         python raw_gas_records.py --debug
+    - name: Run python raw_homedepot.py --debug
+      run: |
+        python raw_homedepot.py --debug
     - name: Upload screenshots
       uses: actions/upload-artifact@v6
       with:
