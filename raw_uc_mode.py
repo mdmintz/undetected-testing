@@ -12,10 +12,10 @@ with SB(uc=True, test=True, incognito=True) as sb:
 
 with SB(uc=True, test=True, incognito=True) as sb:
     sb.goto("https://www.virtualmanager.com/en/login")
-    print(sb.get_page_title())
-    sb.sleep(1)
-    sb.solve_captcha()  # Only used if needed
     sb.sleep(1.5)
+    print(sb.get_page_title())
+    sb.solve_captcha()  # Only used if needed
+    sb.sleep(2)
     sb.assert_element('input[name*="email"]')
     print(sb.get_page_title())
     sb.assert_element('input[name*="login"]')
