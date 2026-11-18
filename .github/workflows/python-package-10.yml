@@ -48,7 +48,7 @@ jobs:
         sbase
     - name: Install chromium
       run: |
-        sudo apt-get install -y chromium
+        sudo apt update && sudo apt install chromium-browser -y
     - name: List dependencies
       run: |
         pipdeptree
