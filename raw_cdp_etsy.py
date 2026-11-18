@@ -16,9 +16,7 @@ try:
             pass
     search = "FIFA Keychains"
     required_text = "keychain"
-    sb.press_keys('input[data-id="search-query"]', search)
-    sb.sleep(1)
-    sb.click('button[aria-label="Search"]')
+    sb.press_keys('input[data-id="search-query"]', search + "\n")
     sb.sleep(2.5)
     sb.solve_captcha()
     sb.sleep(1)
