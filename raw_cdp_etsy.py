@@ -7,8 +7,12 @@ try:
     sb.solve_captcha()
     sb.sleep(2.5)
     if not sb.is_element_present('input[data-id="search-query"]'):
-        sb.solve_captcha()
-        sb.sleep(2.5)
+        sb.refresh()
+        try:
+            sb.solve_captcha()
+            sb.sleep(2.5)
+        except Exception:
+            pass
     search = "FIFA Keychains"
     required_text = "keychain"
     sb.press_keys('input[data-id="search-query"]', search)
