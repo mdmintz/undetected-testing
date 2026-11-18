@@ -5,7 +5,10 @@ try:
     sb.goto("https://www.etsy.com/")
     sb.sleep(2.5)
     sb.solve_captcha()
-    sb.sleep(1.5)
+    sb.sleep(2.5)
+    if not sb.is_element_present('input[data-id="search-query"]'):
+        sb.solve_captcha()
+        sb.sleep(2.5)
     search = "FIFA Keychains"
     required_text = "keychain"
     sb.press_keys('input[data-id="search-query"]', search)
