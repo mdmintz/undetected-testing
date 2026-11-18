@@ -18,14 +18,14 @@ jobs:
       fail-fast: false
       max-parallel: 1
       matrix:
-        os: [ubuntu-24.04-arm]
+        os: [ubuntu-26.04-arm]
         python-version: ["3.14"]
 
     runs-on: ${{ matrix.os }}
     steps:
-    - uses: actions/checkout@v6
+    - uses: actions/checkout@v7
     - name: Set up Python ${{ matrix.python-version }}
-      uses: actions/setup-python@v6
+      uses: actions/setup-python@v7
       with:
         python-version: ${{ matrix.python-version }}
     - name: Install dependencies
@@ -46,9 +46,12 @@ jobs:
       run: |
         seleniumbase
         sbase
-    - name: Install chromium
+    - name: Install Google Chrome (ARM64)
       run: |
-        sudo apt update && sudo apt install chromium-browser -y
+        wget -q https://dl.google.com/linux/direct/google-chrome-stable_current_arm64.deb
+        sudo DEBIAN_FRONTEND=noninteractive apt-get update
+        sudo DEBIAN_FRONTEND=noninteractive apt-get install -y ./google-chrome-stable_current_arm64.deb
+        rm -f ./google-chrome-stable_current_arm64.deb
     - name: List dependencies
       run: |
         pipdeptree
