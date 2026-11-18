@@ -7,7 +7,8 @@ try:
     sb.solve_captcha()
     sb.sleep(2.5)
     if not sb.is_element_present('input[data-id="search-query"]'):
-        sb.refresh()
+        sb.goto("https://www.etsy.com/")
+        sb.sleep(2.5)
         try:
             sb.solve_captcha()
             sb.sleep(2.5)
